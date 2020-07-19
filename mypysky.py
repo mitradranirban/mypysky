@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_delta = 0
   
     def gravity(self):
-        self.movey += 0.01 # how fast player falls
+        self.movey += 3.2 # how fast player falls
        
         if self.rect.y > worldy and self.movey >= 0:
             self.movey = 0
@@ -96,6 +96,19 @@ class Player(pygame.sprite.Sprite):
             if self.frame > ani*3:
                 self.frame = 0
             self.image = self.images[(self.frame//ani)+4]
+        # moving up
+        if self.movey < 0:
+            self.frame += 1
+            if self.frame > ani*3:
+                self.frame = 0
+            self.image = self.images[self.frame//ani]
+
+##        # moving down
+##        if self.movey > 0:
+##            self.frame += 1
+##            if self.frame > ani*3:
+##                self.frame = 0
+##            self.image = self.images[(self.frame//ani)+4]
 
         # collisions
         enemy_hit_list = pygame.sprite.spritecollide(self, enemy_list, False)
@@ -136,7 +149,7 @@ class Player(pygame.sprite.Sprite):
                
         if self.collide_delta < 0 and self.jump_delta < 0:
             self.jump_delta = 6*2
-            self.movey -= 33  # how high to jump
+            self.movey -= 66  # how high to jump
             self.collide_delta += 6
             self.jump_delta    += 6
            
@@ -160,10 +173,10 @@ class Enemy(pygame.sprite.Sprite):
         '''
         enemy movement
         '''
-        distance = 80
-        speed = 8
+        distance = 20
+        speed = 4
 
-        self.movey += 3.2
+        self.movey += 1.2
        
         if self.counter >= 0 and self.counter <= distance:
             self.rect.x += speed
@@ -187,7 +200,7 @@ class Enemy(pygame.sprite.Sprite):
 
         ground_hit_list = pygame.sprite.spritecollide(self, ground_list, False)
         for g in ground_hit_list:
-            self.rect.y = worldy-ty-ty
+            self.rect.y = worldy-ty
 
        
 class Level():
@@ -205,7 +218,7 @@ class Level():
     def loot(lvl,tx,ty):
         if lvl == 1:
             loot_list = pygame.sprite.Group()
-            loot = Platform(200,ty*7,tx,ty, 'candle.png')
+            loot = Platform(400,ty*4,tx,ty, 'candle.png')
             loot_list.add(loot)
 
         if lvl == 2:
@@ -232,14 +245,14 @@ class Level():
         ploc = []
         i=0
         if lvl == 1:
-            ploc.append((20,worldy-ty-128,3))
+            ploc.append((20,worldy-ty-128,4))
             ploc.append((300,worldy-ty-256,3))
             ploc.append((500,worldy-ty-128,4))
 
             while i < len(ploc):
                 j=0
                 while j <= ploc[i][2]:
-                    plat = Platform((ploc[i][0]+(j*tx)),ploc[i][1],tx,ty,'ground.png')
+                    plat = Platform((ploc[i][0]+(j*tx)),ploc[i][1],tx,ty,'cloud.png')
                     plat_list.add(plat)
                     j=j+1
                 print('run' + str(i) + str(ploc[i]))
@@ -251,8 +264,8 @@ class Level():
         return plat_list
 
 def stats(score,health):
-    myfont.render_to(world, (4, 4), "Score:"+str(score), SNOWGRAY, None, size=64)
-    myfont.render_to(world, (4, 72), "Health:"+str(health), SNOWGRAY, None, size=64)
+    myfont.render_to(world, (4, 4), "Score:"+str(score), WHITE, None, size=64)
+    myfont.render_to(world, (4, 72), "Health:"+str(health), WHITE, None, size=64)
 
 '''
 Setup
@@ -260,8 +273,8 @@ Setup
 worldx = 960
 worldy = 720
 
-fps = 40 # frame rate
-ani = 4  # animation cycles
+fps = 60 # frame rate
+ani = 3  # animation cycles
 clock = pygame.time.Clock()
 pygame.init()
 main = True
@@ -285,7 +298,7 @@ forwardx = 600
 backwardx = 230
 
 eloc = []
-eloc = [200,20]
+eloc = [160,20]
 gloc = []
 tx = 64 #tile size
 ty = 64 #tile size
@@ -315,12 +328,14 @@ while main == True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == ord('a'):
-                print("LEFT")
-                player.control(-steps,0)
+               player.control(-steps,0)
             if event.key == pygame.K_RIGHT or event.key == ord('d'):
-                print("RIGHT")
                 player.control(steps,0)
             if event.key == pygame.K_UP or event.key == ord('w'):
+                player.control(0,-steps)
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                player.control(0,steps)                
+            if event.key == pygame.K_SPACE or event.key == ord('x'):
                 print('jump')
 
         if event.type == pygame.KEYUP:
@@ -329,8 +344,11 @@ while main == True:
             if event.key == pygame.K_RIGHT or event.key == ord('d'):
                 player.control(-steps,0)
             if event.key == pygame.K_UP or event.key == ord('w'):
+                player.control(0,-steps*4)
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                player.control(0,steps)                
+            if event.key == pygame.K_SPACE or event.key == ord('x'):
                 player.jump(plat_list)
-
             if event.key == ord('q'):
                 pygame.quit()
                 sys.exit()
