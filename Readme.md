@@ -1,4 +1,6 @@
-mypysky is a personal attempt to learn python programming by creating a game using pygame library as well as creating an interactive playable fanart for my favorite mobile game sky children of light.
+# mypysky 
+
+*mypysky* is a personal attempt to learn python programming by creating a game using pygame library as well as creating an interactive playable fanart for my favorite mobile game sky children of light.
 
 To download git clone mypysky
 or download  the zip file and unzip it 
