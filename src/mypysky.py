@@ -103,13 +103,6 @@ class Player(pygame.sprite.Sprite):
                 self.frame = 0
             self.image = self.images[self.frame//ani]
 
-##        # moving down
-##        if self.movey > 0:
-##            self.frame += 1
-##            if self.frame > ani*3:
-##                self.frame = 0
-##            self.image = self.images[(self.frame//ani)+4]
-
         # collisions
         enemy_hit_list = pygame.sprite.spritecollide(self, enemy_list, False)
         if self.damage == 0:
@@ -161,8 +154,8 @@ class Enemy(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join('images',img))
         self.movey = 0
-        #self.image.convert_alpha()
-        #self.image.set_colorkey(ALPHA)
+        self.image.convert_alpha()
+        self.image.set_colorkey(ALPHA)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -273,7 +266,7 @@ Setup
 worldx = 960
 worldy = 720
 
-fps = 60 # frame rate
+fps = 30 # frame rate
 ani = 3  # animation cycles
 clock = pygame.time.Clock()
 pygame.init()
@@ -311,6 +304,7 @@ i=0
 while i <= (worldx/tx)+tx:
     gloc.append(i*tx)
     i=i+1
+    print('Game Time'+str(i))
 
 enemy_list = Level.bad( 1, eloc )
 ground_list = Level.ground( 1,gloc,tx,ty )
