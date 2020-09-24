@@ -166,7 +166,7 @@ class Enemy(pygame.sprite.Sprite):
         '''
         enemy movement
         '''
-        distance = 20
+        distance = 40
         speed = 4
 
         self.movey += 1.2
@@ -200,8 +200,12 @@ class Level():
     def bad(lvl,eloc):
         if lvl == 1:
             enemy = Enemy(eloc[0],eloc[1],'crab.png') # spawn enemy
+            enemy1 =  Enemy(eloc[1],eloc[0],'crab.png')
+            enemy2= Enemy(eloc[2],eloc[3],'krill.png')
             enemy_list = pygame.sprite.Group() # create enemy group
-            enemy_list.add(enemy)              # add enemy to group
+            enemy_list.add(enemy)  
+            enemy_list.add(enemy1)   
+            enemy_list.add(enemy2)         # add enemies to group
            
         if lvl == 2:
             print("Level " + str(lvl) )
@@ -212,7 +216,14 @@ class Level():
         if lvl == 1:
             loot_list = pygame.sprite.Group()
             loot = Platform(400,ty*4,tx,ty, 'candle.png')
+            loot1 = Platform  (600,ty*6,tx,ty,'candle.png')
+            loot2 = Platform  (500,ty*5,tx,ty,'candle.png')
+            loot3 = Platform  (300,ty*5,tx,ty,'candle.png')
+
             loot_list.add(loot)
+            loot_list.add(loot1)
+            loot_list.add(loot2)
+            loot_list.add(loot3)
 
         if lvl == 2:
             print(lvl)
@@ -291,7 +302,7 @@ forwardx = 600
 backwardx = 230
 
 eloc = []
-eloc = [160,20]
+eloc = [160,20,240,120]
 gloc = []
 tx = 64 #tile size
 ty = 64 #tile size
