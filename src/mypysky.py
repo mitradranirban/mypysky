@@ -20,6 +20,8 @@ import pygame
 import sys
 import os
 import pygame.freetype
+from pygame.locals import *
+
 
 '''
 Objects
@@ -121,7 +123,7 @@ class Player(pygame.sprite.Sprite):
             loot_list.remove(loot)
             self.score += 1
             print(self.score)
-
+       
         plat_hit_list = pygame.sprite.spritecollide(self, plat_list, False)
         for p in plat_hit_list:
             self.collide_delta = 0 # stop jumping
@@ -142,10 +144,11 @@ class Player(pygame.sprite.Sprite):
                
         if self.collide_delta < 0 and self.jump_delta < 0:
             self.jump_delta = 6*2
-            self.movey -= 66  # how high to jump
+            self.movey -= 50  # how high to jump
             self.collide_delta += 6
             self.jump_delta    += 6
-           
+
+                  
 class Enemy(pygame.sprite.Sprite):
     '''
     Spawn an enemy
@@ -200,8 +203,8 @@ class Level():
     def bad(lvl,eloc):
         if lvl == 1:
             enemy = Enemy(eloc[0],eloc[1],'crab.png') # spawn enemy
-            enemy1 =  Enemy(eloc[1],eloc[0],'crab.png')
-            enemy2= Enemy(eloc[2],eloc[3],'krill.png')
+            enemy1 =  Enemy(eloc[2],eloc[3],'crab.png')
+            enemy2= Enemy(eloc[4],eloc[5],'krill.png')
             enemy_list = pygame.sprite.Group() # create enemy group
             enemy_list.add(enemy)  
             enemy_list.add(enemy1)   
@@ -215,10 +218,10 @@ class Level():
     def loot(lvl,tx,ty):
         if lvl == 1:
             loot_list = pygame.sprite.Group()
-            loot = Platform(400,ty*4,tx,ty, 'candle.png')
-            loot1 = Platform  (600,ty*6,tx,ty,'candle.png')
-            loot2 = Platform  (500,ty*5,tx,ty,'candle.png')
-            loot3 = Platform  (300,ty*5,tx,ty,'candle.png')
+            loot = Platform   (lloc[0],lloc[1],tx,ty, 'candle.png')
+            loot1 = Platform  (lloc[2],lloc[3],tx,ty, 'candle.png')
+            loot2 = Platform  (lloc[4],lloc[5],tx,ty, 'candle.png')
+            loot3 = Platform  (lloc[6],lloc[7],tx,ty, 'candle.png')
 
             loot_list.add(loot)
             loot_list.add(loot1)
@@ -249,7 +252,7 @@ class Level():
         ploc = []
         i=0
         if lvl == 1:
-            ploc.append((20,worldy-ty-128,4))
+            ploc.append((20,worldy-ty-192,4))
             ploc.append((300,worldy-ty-256,3))
             ploc.append((500,worldy-ty-128,4))
 
@@ -271,6 +274,18 @@ def stats(score,health):
     myfont.render_to(world, (4, 4), "Score:"+str(score), WHITE, None, size=64)
     myfont.render_to(world, (4, 72), "Health:"+str(health), WHITE, None, size=64)
 
+def showendscreen():
+        myfont.render_to(endsurf, (worldx/2-40, worldy/2), "You are reborn", WHITE, None, size=64)
+
+def terminate() :          
+    pygame.quit()
+    sys.exit()
+    main = False
+
+
+   
+       
+
 '''
 Setup
 '''
@@ -290,6 +305,7 @@ SNOWGRAY = (137,164,166)
 ALPHA = (0,0,0)
    
 world = pygame.display.set_mode([worldx,worldy])
+
 backdrop = pygame.image.load(os.path.join('images','stage.png')).convert()
 backdropbox = world.get_rect()
 player = Player() # spawn player
@@ -302,8 +318,10 @@ forwardx = 600
 backwardx = 230
 
 eloc = []
-eloc = [160,20,240,120]
+eloc = [60,200,280,300,460,50]
 gloc = []
+lloc= []
+lloc=[60,360,140,240,0,0,0,0,0]
 tx = 64 #tile size
 ty = 64 #tile size
 
@@ -323,13 +341,31 @@ plat_list = Level.platform( 1,tx,ty )
 loot_list = Level.loot(1,tx,ty)
 
 '''
+Game over and Thanks for Playing Rectangles
+
+# create the surfaces to hold game text - to be implemented 
+gameOverSurf = myfont.render('You are reborn', WHITE, None, size=16)
+gameOverRect = gameOverSurf.get_rect()
+gameOverRect.center = (worldx/2, worldy/2)
+
+winSurf = myfont.render('Thanks for Playing MyPySky Alpha', WHITE,None, size=10 )
+winRect = winSurf.get_rect()
+winRect.center = (worldx/2, worldy/2)
+
+winSurf2 = myfont.render('(Press "q" to quit.)', WHITE,None, size=10)
+winRect2 = winSurf2.get_rect()
+winRect2.center = (worldx/2, worldy/2 + 30)
+'''
+
+'''
 Main loop
 '''
 while main == True:
+    pygame.display.set_caption('MyPySky!- python based Sky Fan art game')
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit(); sys.exit()
-            main = False
+            terminate()
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == ord('a'):
@@ -354,10 +390,11 @@ while main == True:
                 player.control(0,steps)                
             if event.key == pygame.K_SPACE or event.key == ord('x'):
                 player.jump(plat_list)
-            if event.key == ord('q'):
-                pygame.quit()
-                sys.exit()
-                main = False
+            if event.key == pygame.K_ESCAPE or event.key == ord('q'):
+                terminate()
+            
+
+   
 
     # scroll the world forward
     if player.rect.x >= forwardx:
@@ -381,17 +418,23 @@ while main == True:
             e.rect.x += scroll
         for l in loot_list:
             l.rect.x += scroll
-
+    
     world.blit(backdrop, backdropbox)
     player.gravity() # check gravity
     player.update()
     player_list.draw(world) #refresh player position
     enemy_list.draw(world)  # refresh enemies
-    ground_list.draw(world)  # refresh enemies
+    ground_list.draw(world)  # refresh grounds
     plat_list.draw(world)   # refresh platforms
     loot_list.draw(world)   # refresh loot
     for e in enemy_list:
         e.move()
+    if player.score > 5: 
+        showwinscreen()
+    
+    if player.health < 1:
+        showendscreen()
+    
     stats(player.score,player.health) # draw text
     pygame.display.flip()
     clock.tick(fps)
