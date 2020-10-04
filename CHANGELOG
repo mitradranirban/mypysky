@@ -1,6 +1,6 @@
-Version 0.0.1 [12th July 2020] 
+Version 0.0.3 [4th October 2020] 
 
-First Release.
+Change to multiple python files for easier programming and enabling multiple levels.
 
 Version 0.0.2 [16th July 2020]- Anirban
 
@@ -8,4 +8,6 @@ Updated images
 
 modified game script for vertical movement 
 
+Version 0.0.1 (12th July 2020)
 
+First Release.
