@@ -3,10 +3,11 @@ This module is used to hold the Player class. The Player represents the user-
 controlled sprite on the screen.
 """
 import pygame
-
+import assets
 import constants
 
 from platforms import MovingPlatform
+from platforms import loot 
 from spritesheet_functions import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
@@ -36,44 +37,34 @@ class Player(pygame.sprite.Sprite):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("p1_walk.png")
+       
         # Load all the right facing images into a list
-        image = sprite_sheet.get_image(0, 0, 66, 90)
+        image = load_png(child1.png)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(66, 0, 66, 90)
+        image = load_png(child2.png)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(132, 0, 67, 90)
+        image = load_png(child3.png)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(0, 93, 66, 90)
+        image = load_png(child4.png)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(66, 93, 66, 90)
-        self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(132, 93, 72, 90)
-        self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(0, 186, 70, 90)
+        image = load_png(child5.png)
         self.walking_frames_r.append(image)
 
         # Load all the right facing images, then flip them
         # to face left.
-        image = sprite_sheet.get_image(0, 0, 66, 90)
+        image = load_png(child1.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(66, 0, 66, 90)
+        image = load_png(child2.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(132, 0, 67, 90)
+        image = load_png(child3.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(0, 93, 66, 90)
+        image = load_png(child4.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(66, 93, 66, 90)
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(132, 93, 72, 90)
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(0, 186, 70, 90)
+        image = load_png(child5.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
 
