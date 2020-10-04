@@ -1,37 +1,22 @@
 """
-Sample Python/Pygame Programs
+MyPySky Pygame Programs
 Simpson College Computer Science
-http://programarcadegames.com/
-http://simpson.edu/computer-science/
 
-Main module for platform scroller example.
+Main module for platform scroller.
 
-From:
+Modified from:
 http://programarcadegames.com/python_examples/sprite_sheets/
-
-Explanation video: http://youtu.be/czBDKWJqOao
-
-Part of a series:
-http://programarcadegames.com/python_examples/f.php?file=move_with_walls_example.py
-http://programarcadegames.com/python_examples/f.php?file=maze_runner.py
-http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
-http://programarcadegames.com/python_examples/f.php?file=platform_scroller.py
-http://programarcadegames.com/python_examples/f.php?file=platform_moving.py
-http://programarcadegames.com/python_examples/sprite_sheets/
-
-Game art from Kenney.nl:
-http://opengameart.org/content/platformer-art-deluxe
 
 """
 
 import pygame
-
+import assets
 import constants
 import levels
 
 from player import Player
 
-def main():
+def main
     """ Main Program """
     pygame.init()
 
@@ -39,7 +24,7 @@ def main():
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    pygame.display.set_caption("Platformer with sprite sheets")
+    pygame.display.set_caption("MyPySky python based sky fan art game")
 
     # Create the player
     player = Player()
@@ -73,17 +58,17 @@ def main():
                 done = True # Flag that we are done so we exit this loop
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == K_a or event.key == K_LEFT:
                     player.go_left()
-                if event.key == pygame.K_RIGHT:
+                if event.key == K_d or event.key == K_RIGHT:
                     player.go_right()
-                if event.key == pygame.K_UP:
+                if event.key == K_w or event.key == K_UP:
                     player.jump()
 
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT and player.change_x < 0:
+                if event.key == K_a or event.key == K_LEFT and player.change_x < 0:
                     player.stop()
-                if event.key == pygame.K_RIGHT and player.change_x > 0:
+                if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
 
         # Update the player.
