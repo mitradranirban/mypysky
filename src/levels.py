@@ -12,6 +12,7 @@ class Level():
     # lists as needed for your game. """
     platform_list = None
     enemy_list = None
+    loot_list = None
 
     # Background image
     background = None
@@ -25,6 +26,7 @@ class Level():
             collide with the player. """
         self.platform_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
+        self.loot_list = pygame.sprite.Group()
         self.player = player
 
     # Update everythign on this level
@@ -32,6 +34,7 @@ class Level():
         """ Update everything in this level."""
         self.platform_list.update()
         self.enemy_list.update()
+        self.loot_list.update()
 
     def draw(self, screen):
         """ Draw everything on this level. """
@@ -45,6 +48,7 @@ class Level():
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
+        self.loot_list.draw(screen)
 
     def shift_world(self, shift_x):
         """ When the user moves left/right and we need to scroll everything: """
@@ -59,6 +63,9 @@ class Level():
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
 
+        for loot in self.loot_list:
+            loot.rect.x += shift.x 
+
 # Create platforms for the level
 class Level_01(Level):
     """ Definition for level 1. """
@@ -69,24 +76,17 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("background_01.png").convert()
+        self.background = pygame.image.load(os.path.join('images',home.png").convert()
         self.background.set_colorkey(constants.WHITE)
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [platforms.GRASS_LEFT, 500, 500],
-                  [platforms.GRASS_MIDDLE, 570, 500],
-                  [platforms.GRASS_RIGHT, 640, 500],
-                  [platforms.GRASS_LEFT, 800, 400],
-                  [platforms.GRASS_MIDDLE, 870, 400],
-                  [platforms.GRASS_RIGHT, 940, 400],
-                  [platforms.GRASS_LEFT, 1000, 500],
-                  [platforms.GRASS_MIDDLE, 1070, 500],
-                  [platforms.GRASS_RIGHT, 1140, 500],
-                  [platforms.STONE_PLATFORM_LEFT, 1120, 280],
-                  [platforms.STONE_PLATFORM_MIDDLE, 1190, 280],
-                  [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
-                  ]
+        level = [ [platforms.GRASS, 500, 500],
+                  [platforms.SAND, 570, 500],
+                  [platforms.STONE, 640, 500],
+                  [platforms.ICE, 800, 400],
+                  [platforms.CLOUD, 870, 400],
+                   ]
 
 
         # Go through the array above and add platforms
@@ -98,7 +98,7 @@ class Level_01(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        block = platforms.MovingPlatform(platforms.CLOUD)
         block.rect.x = 1350
         block.rect.y = 280
         block.boundary_left = 1350

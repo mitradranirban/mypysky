@@ -2,40 +2,45 @@
 Module for managing platforms.
 """
 import pygame
+import assets
+import constants
 
-from spritesheet_functions import SpriteSheet
+ def load_image(self, width, height):
+        """ load a single image from image folder and make a pygame sprite. """
 
-# These constants define our platform types:
-#   Name of file
-#   X location of sprite
-#   Y location of sprite
-#   Width of sprite
-#   Height of sprite
+        # Create a new blank image
+        image = pygame.Surface([width, height]).convert()
 
-GRASS_LEFT            = (576, 720, 70, 70)
-GRASS_RIGHT           = (576, 576, 70, 70)
-GRASS_MIDDLE          = (504, 576, 70, 70)
-STONE_PLATFORM_LEFT   = (432, 720, 70, 40)
-STONE_PLATFORM_MIDDLE = (648, 648, 70, 40)
-STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
+        # Load the sprite from the large sheet onto the smaller image
+        image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
+
+        # Assuming black works as the transparent color
+        image.set_colorkey(constants.BLACK)
+
+        # Return the image
+        return image
+
+
+
+GRASS = 'grass.png'
+STONE = 'stone.png'
+ICE = 'ice.png'
+SAND = 'sand.png'
+CLOUD = 'cloud.png'
+ 
 
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 
-    def __init__(self, sprite_sheet_data):
-        """ Platform constructor. Assumes constructed with user passing in
-            an array of 5 numbers like what's defined at the top of this
-            code. """
+    def __init__(self, xlocation, ylocation, imagewidth, imageheight, image):
+        """ Platform constructorfrom individual images. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("tiles_spritesheet.png")
-        # Grab the image for this platform
-        self.image = sprite_sheet.get_image(sprite_sheet_data[0],
-                                            sprite_sheet_data[1],
-                                            sprite_sheet_data[2],
-                                            sprite_sheet_data[3])
-
+        self.image = pygame.image.load(os.path.join('images',img)).convert()
+        self.image.set_colorkey(constants.BLACK)                                   
         self.rect = self.image.get_rect()
+        self.rect.y = ylocation
+        self.rect.x = xlocation
 
 
 class MovingPlatform(Platform):
@@ -99,3 +104,7 @@ class MovingPlatform(Platform):
         cur_pos = self.rect.x - self.level.world_shift
         if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
             self.change_x *= -1
+
+class loot(Platform)
+    level = None
+    player = None

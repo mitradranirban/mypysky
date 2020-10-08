@@ -117,6 +117,7 @@ class Player(pygame.sprite.Sprite):
             if idx == -1:
                 self.damage = 0   # set damage back to 0
                 self.health -= 1  # subtract 1 hp
+                print(self.health)
 
         loot_hit_list = pygame.sprite.spritecollide(self, loot_list, False)
         for loot in loot_hit_list:

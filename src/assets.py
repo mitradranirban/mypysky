@@ -10,12 +10,10 @@ try:
 
     import os
 
-    import getopt
+    import constants
 
     import pygame
     
-    from socket import *
-
     from pygame.locals import *
 
 except ImportError as err:
@@ -47,3 +45,5 @@ def load_png(name):
         print('Cannot load image:', fullname)
         raise SystemExit
     return image, image.get_rect()
+    
+   

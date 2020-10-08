@@ -8,16 +8,17 @@ import constants
 
 from platforms import MovingPlatform
 from platforms import loot 
-from spritesheet_functions import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
-    """ This class represents the bar at the bottom that the player
+    """ This class represents the player at the bottom that the player
     controls. """
 
     # -- Attributes
     # Set speed vector of player
     change_x = 0
     change_y = 0
+
+
 
     # This holds all the images for the animated walk left/right
     # of our player
@@ -39,32 +40,52 @@ class Player(pygame.sprite.Sprite):
 
        
         # Load all the right facing images into a list
-        image = load_png(child1.png)
+        image = pygame.image.load(os.path.join('images',child1.png)
         self.walking_frames_r.append(image)
-        image = load_png(child2.png)
+        image = pygame.image.load(os.path.join('images',child2.png)
         self.walking_frames_r.append(image)
-        image = load_png(child3.png)
+        image = pygame.image.load(os.path.join('images',child3.png)
         self.walking_frames_r.append(image)
-        image = load_png(child4.png)
+        image = pygame.image.load(os.path.join('images',child4.png)
         self.walking_frames_r.append(image)
-        image = load_png(child5.png)
+        image = pygame.image.load(os.path.join('images',child5.png)
+        self.walking_frames_r.append(image)
+        image = pygame.image.load(os.path.join('images',child6.png)
+        self.walking_frames_r.append(image)
+        image = pygame.image.load(os.path.join('images',child7.png)
+        self.walking_frames_r.append(image)
+        image = pygame.image.load(os.path.join('images',child8.png)
+        self.walking_frames_r.append(image)
+        image = pygame.image.load(os.path.join('images',child9.png)
         self.walking_frames_r.append(image)
 
         # Load all the right facing images, then flip them
         # to face left.
-        image = load_png(child1.png)
+        image = pygame.image.load(os.path.join('images',child1.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = load_png(child2.png)
+        image = pygame.image.load(os.path.join('images',child2.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = load_png(child3.png)
+        image = pygame.image.load(os.path.join('images',child3.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = load_png(child4.png)
+        image = pygame.image.load(os.path.join('images',child4.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = load_png(child5.png)
+        image = pygame.image.load(os.path.join('images',child5.png)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = pygame.image.load(os.path.join('images',child6.png)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = pygame.image.load(os.path.join('images',child7.png)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = pygame.image.load(os.path.join('images',child8.png)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = pygame.image.load(os.path.join('images',child9.png)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
 
@@ -73,7 +94,14 @@ class Player(pygame.sprite.Sprite):
 
         # Set a referance to the image rect.
         self.rect = self.image.get_rect()
+        # Set Baseline score, health and collide delta 
 
+        self.health = 10
+        self.damage = 0
+        self.collide_delta = 0
+        self.jump_delta = 6
+        self.score = 1
+        
     def update(self):
         """ Move the player. """
         # Gravity
@@ -159,3 +187,5 @@ class Player(pygame.sprite.Sprite):
     def stop(self):
         """ Called when the user lets off the keyboard. """
         self.change_x = 0
+    
+    
