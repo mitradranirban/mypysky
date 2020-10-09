@@ -5,6 +5,7 @@
 
 To download git clone mypysky 
  
+
 or download  the zip file and unzip it 
 
 To play  issue the following command from the src directory in command line 
@@ -42,5 +43,8 @@ The python script is written with help from multiple sources
 The art work is my own creation. It is distributed under CC BY-SA 4.0 [see https://creativecommons.org/licenses/by-sa 
 /4.0/] 
 
-_Disclaimer_  The  game contains concepts and  characters depicted in the game the game Sky Children of Light. This priject is not affiliated to That Game  Company, the developer of Sky mibile game and none of its intellectual properties like  picture screenshot has been used 
+_Disclaimer_  The  game contains concepts and  characters depicted in the game the game Sky Children of Light.
+
+ This priject is not affiliated to That Game  Company, the developer of Sky mobile game, and none of its 
+intellectual properties like  picture, screenshot has been used in this game 
 
