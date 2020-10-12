@@ -2,17 +2,18 @@
 Module for managing platforms.
 """
 import pygame
-import assets
+import os 
+# import assets
 import constants
 
- def load_image(self, width, height):
+def load_image(self, width, height):
         """ load a single image from image folder and make a pygame sprite. """
 
         # Create a new blank image
         image = pygame.Surface([width, height]).convert()
 
-        # Load the sprite from the large sheet onto the smaller image
-        image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
+        # Load the sprite from images folder
+        pygame.image.load(os.path.join('images',image)).convert()
 
         # Assuming black works as the transparent color
         image.set_colorkey(constants.BLACK)
@@ -36,7 +37,7 @@ class Platform(pygame.sprite.Sprite):
         """ Platform constructorfrom individual images. """
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load(os.path.join('images',img)).convert()
+        self.image = pygame.image.load(os.path.join('images',image)).convert()
         self.image.set_colorkey(constants.BLACK)                                   
         self.rect = self.image.get_rect()
         self.rect.y = ylocation
@@ -105,6 +106,6 @@ class MovingPlatform(Platform):
         if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
             self.change_x *= -1
 
-class loot(Platform)
+class loot(Platform):
     level = None
     player = None

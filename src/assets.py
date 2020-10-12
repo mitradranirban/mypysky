@@ -1,7 +1,6 @@
 # file to load necessary assets for running game 
 #/usr/bin/env python3
-try:
-
+try: 
     import sys
 
     import random
@@ -10,7 +9,7 @@ try:
 
     import os
 
-    import constants
+    import getopt
 
     import pygame
     
@@ -23,17 +22,18 @@ except ImportError as err:
     sys.exit(2)
     
 def load_sound(name):
-    """ Load sound object"""
+     # Load sound object
     fullname = os.path.join('sounds', name)
     try:
         sound = pygame.mixer.Sound(fullname)
 
-    except pygame.error as message:
+    except pygame.error:
         print('Cannot load sound file:', fullname)
-        raise SystemExit 
-           
+        raise SystemExit. message
+    return sound.play()
+        
 def load_png(name):
-    """ Load image and return image object"""
+     # Load image and return image object
     fullname = os.path.join('images', name)
     try:
         image = pygame.image.load(fullname)
@@ -41,9 +41,7 @@ def load_png(name):
             image = image.convert()
         else:
             image = image.convert_alpha()
-    except pygame.error as message:
+    except pygame.error:
         print('Cannot load image:', fullname)
         raise SystemExit
     return image, image.get_rect()
-    
-   

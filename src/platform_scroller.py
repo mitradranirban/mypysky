@@ -16,7 +16,7 @@ import levels
 
 from player import Player
 
-def main
+def main():
     """ Main Program """
     pygame.init()
 
