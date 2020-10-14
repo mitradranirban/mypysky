@@ -8,7 +8,7 @@ WHITE    = ( 255, 255, 255)
 BLUE     = (   0,   0, 255)
 
 # Screen dimensions
-SCREEN_WIDTH  = 600
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH  = 1054
+SCREEN_HEIGHT = 594
 TILEX = 64
 TILEY = 64

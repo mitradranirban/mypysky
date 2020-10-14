@@ -14,7 +14,7 @@ import assets
 import constants
 import levels
 import os
-
+from pygame.locals import *
 from player import Player
 
 def main():
@@ -59,17 +59,17 @@ def main():
                 done = True # Flag that we are done so we exit this loop
 
             if event.type == pygame.KEYDOWN:
-                if event.key == ord(a) or event.key == K_LEFT:
+                if event.key == K_a or event.key == K_LEFT:
                     player.go_left()
-                if event.key == ord(d) or event.key == K_RIGHT:
+                if event.key == K_d or event.key == K_RIGHT:
                     player.go_right()
-                if event.key == ord(w) or event.key == K_UP:
+                if event.key == K_w or event.key == K_UP:
                     player.jump()
 
             if event.type == pygame.KEYUP:
-                if event.key == ord(a) or event.key == K_LEFT and player.change_x < 0:
+                if event.key == K_a or event.key == K_LEFT and player.change_x < 0:
                     player.stop()
-                if event.key == ord(d) or event.key == K_RIGHT and player.change_x > 0:
+                if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
 
         # Update the player.
