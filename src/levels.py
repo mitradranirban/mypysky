@@ -1,5 +1,5 @@
 import pygame
-
+import os
 import constants
 import platforms
 
@@ -76,7 +76,7 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load(os.path.join('images',"home.png").convert()
+        self.background = pygame.image.load(os.path.join('images',"home.png")).convert()
         self.background.set_colorkey(constants.WHITE)
         self.level_limit = -2500
 
@@ -91,14 +91,14 @@ class Level_01(Level):
 
         # Go through the array above and add platforms
         for platform in level:
-            block = platforms.Platform(platform[0])
+            block = platforms.Platform(platform[1],platform[2],constants.TILEX,constants.TILEY,platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block = platforms.MovingPlatform(platforms.CLOUD)
+        block = platforms.MovingPlatform(1350,280,constants.TILEX,constants.TILEY,platforms.CLOUD)
         block.rect.x = 1350
         block.rect.y = 280
         block.boundary_left = 1350
@@ -119,36 +119,36 @@ class Level_02(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("background_02.png").convert()
+        self.background = pygame.image.load(os.path.join('images',"isle.png")).convert()
         self.background.set_colorkey(constants.WHITE)
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [platforms.STONE_PLATFORM_LEFT, 500, 550],
-                  [platforms.STONE_PLATFORM_MIDDLE, 570, 550],
-                  [platforms.STONE_PLATFORM_RIGHT, 640, 550],
-                  [platforms.GRASS_LEFT, 800, 400],
-                  [platforms.GRASS_MIDDLE, 870, 400],
-                  [platforms.GRASS_RIGHT, 940, 400],
-                  [platforms.GRASS_LEFT, 1000, 500],
-                  [platforms.GRASS_MIDDLE, 1070, 500],
-                  [platforms.GRASS_RIGHT, 1140, 500],
-                  [platforms.STONE_PLATFORM_LEFT, 1120, 280],
-                  [platforms.STONE_PLATFORM_MIDDLE, 1190, 280],
-                  [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
+        level = [ [platforms.STONE, 500, 550, ],
+                  [platforms.STONE, 570, 550],
+                  [platforms.STONE, 640, 550],
+                  [platforms.GRASS, 800, 400],
+                  [platforms.GRASS, 870, 400],
+                  [platforms.GRASS, 940, 400],
+                  [platforms.GRASS, 1000, 500],
+                  [platforms.GRASS, 1070, 500],
+                  [platforms.GRASS, 1140, 500],
+                  [platforms.STONE, 1120, 280],
+                  [platforms.STONE, 1190, 280],
+                  [platforms.STONE, 1260, 280],
                   ]
 
 
         # Go through the array above and add platforms
         for platform in level:
-            block = platforms.Platform(platform[0])
+            block = platforms.Platform(platform[1],platform[2],constants.TILEX,constants.TILEY,platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        block = platforms.MovingPlatform(1500,300,constants.TILEX,constants.TILEY,platforms.CLOUD)
         block.rect.x = 1500
         block.rect.y = 300
         block.boundary_top = 100

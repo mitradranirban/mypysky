@@ -1,3 +1,7 @@
+import math
+import random
+
+
 class Enemy(pygame.sprite.Sprite):
     '''
     Spawn an enemy
@@ -18,8 +22,8 @@ class Enemy(pygame.sprite.Sprite):
         '''
         enemy movement
         '''
-        distance = 40
-        speed = 4
+        distance = random.randomint(10,40)
+        speed = random.randomint(1.4)
 
         self.movey += 1.2
        

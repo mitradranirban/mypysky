@@ -5,6 +5,7 @@ controlled sprite on the screen.
 import pygame
 import assets
 import constants
+import os 
 
 from platforms import MovingPlatform
 from platforms import loot 
@@ -40,52 +41,52 @@ class Player(pygame.sprite.Sprite):
 
        
         # Load all the right facing images into a list
-        image = pygame.image.load(os.path.join('images',child1.png)
+        image = pygame.image.load(os.path.join('images','child1.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child2.png)
+        image = pygame.image.load(os.path.join('images','child2.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child3.png)
+        image = pygame.image.load(os.path.join('images','child3.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child4.png)
+        image = pygame.image.load(os.path.join('images','child4.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child5.png)
+        image = pygame.image.load(os.path.join('images','child5.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child6.png)
+        image = pygame.image.load(os.path.join('images','child6.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child7.png)
+        image = pygame.image.load(os.path.join('images','child7.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child8.png)
+        image = pygame.image.load(os.path.join('images','child8.png'))
         self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images',child9.png)
+        image = pygame.image.load(os.path.join('images','child9.png'))
         self.walking_frames_r.append(image)
 
         # Load all the right facing images, then flip them
         # to face left.
-        image = pygame.image.load(os.path.join('images',child1.png)
+        image = pygame.image.load(os.path.join('images','child1.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child2.png)
+        image = pygame.image.load(os.path.join('images','child2.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child3.png)
+        image = pygame.image.load(os.path.join('images','child3.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child4.png)
+        image = pygame.image.load(os.path.join('images','child4.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child5.png)
+        image = pygame.image.load(os.path.join('images','child5.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child6.png)
+        image = pygame.image.load(os.path.join('images','child6.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child7.png)
+        image = pygame.image.load(os.path.join('images','child7.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child8.png)
+        image = pygame.image.load(os.path.join('images','child8.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images',child9.png)
+        image = pygame.image.load(os.path.join('images','child9.png'))
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
 
