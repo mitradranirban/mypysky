@@ -97,19 +97,10 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
 
-        # Add a custom moving platform
-        block = platforms.MovingPlatform(1350,280,constants.TILEX,constants.TILEY,platforms.CLOUD)
-        block.rect.x = 1350
-        block.rect.y = 280
-        block.boundary_left = 1350
-        block.boundary_right = 1600
-        block.change_x = 1
-        block.player = self.player
-        block.level = self
-        self.platform_list.add(block)
+      
 
 
-# Create platforms for the level
+# Create platforms for the level 2
 class Level_02(Level):
     """ Definition for level 2. """
 
@@ -121,12 +112,12 @@ class Level_02(Level):
 
         self.background = pygame.image.load(os.path.join('images',"isle.png")).convert()
         self.background.set_colorkey(constants.WHITE)
-        self.level_limit = -1000
+        self.level_limit = -2000
 
         # Array with type of platform, and x, y location of the platform.
         level = [ [platforms.STONE, 500, 550, ],
-                  [platforms.STONE, 570, 550],
-                  [platforms.STONE, 640, 550],
+                  [platforms.STONE, 570, 490],
+                  [platforms.STONE, 640, 430],
                   [platforms.GRASS, 800, 400],
                   [platforms.GRASS, 870, 400],
                   [platforms.GRASS, 940, 400],
@@ -148,6 +139,57 @@ class Level_02(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
+        block = platforms.MovingPlatform(1350,280,constants.TILEX,constants.TILEY,platforms.CLOUD)
+        block.rect.x = 1350
+        block.rect.y = 280
+        block.boundary_left = 1350
+        block.boundary_right = 1600
+        block.change_x = 1
+        block.player = self.player
+        block.level = self
+        self.platform_list.add(block)
+       
+
+# Create platforms for the level 3
+class Level_03(Level):
+    """ Definition for level 3. """
+
+    def __init__(self, player):
+        """ Create level 3. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"prairie.png")).convert()
+        self.background.set_colorkey(constants.WHITE)
+        self.level_limit = -1500
+
+        # Array with type of platform, and x, y location of the platform.
+        level = [ [platforms.STONE, 500, 550, ],
+                  [platforms.STONE, 570, 550],
+                  [platforms.STONE, 640, 550],
+                  [platforms.GRASS, 800, 400],
+                  [platforms.GRASS, 870, 400],
+                  [platforms.GRASS, 940, 400],
+                  [platforms.GRASS, 1000, 500],
+                  [platforms.GRASS, 1070, 500],
+                  [platforms.GRASS, 1140, 500],
+                  [platforms.STONE, 1120, 280],
+                  [platforms.STONE, 1190, 280],
+                  [platforms.STONE, 2060, 280],
+                  ]
+
+
+        # Go through the array above and add platforms
+        for platform in level:
+            block = platforms.Platform(platform[1],platform[2],constants.TILEX,constants.TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.platform_list.add(block)
+
+        
+         # Add a custom moving platform
         block = platforms.MovingPlatform(1500,300,constants.TILEX,constants.TILEY,platforms.CLOUD)
         block.rect.x = 1500
         block.rect.y = 300
@@ -157,3 +199,41 @@ class Level_02(Level):
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
+
+# Create platforms for the level 4
+class Level_04(Level):
+    """ Definition for level 4. """
+
+    def __init__(self, player):
+        """ Create level 4. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"forest.png")).convert()
+        self.background.set_colorkey(constants.WHITE)
+        self.level_limit = -2000
+
+        # Array with type of platform, and x, y location of the platform.
+        level = [ [platforms.STONE, 500, 550, ],
+                  [platforms.STONE, 570, 550],
+                  [platforms.STONE, 640, 550],
+                  [platforms.GRASS, 800, 400],
+                  [platforms.GRASS, 870, 400],
+                  [platforms.GRASS, 940, 400],
+                  [platforms.GRASS, 1000, 500],
+                  [platforms.GRASS, 1070, 500],
+                  [platforms.GRASS, 1140, 500],
+                  [platforms.STONE, 1120, 280],
+                  [platforms.STONE, 1190, 280],
+                  [platforms.STONE, 2060, 280],
+                  ]
+
+
+        # Go through the array above and add platforms
+        for platform in level:
+            block = platforms.Platform(platform[1],platform[2],constants.TILEX,constants.TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.platform_list.add(block)

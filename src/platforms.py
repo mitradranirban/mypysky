@@ -28,6 +28,8 @@ STONE = 'stone.png'
 ICE = 'ice.png'
 SAND = 'sand.png'
 CLOUD = 'cloud.png'
+MANTA = 'manta.png'
+JELLY = 'jellyfish.png'
  
 
 class Platform(pygame.sprite.Sprite):

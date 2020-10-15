@@ -34,6 +34,9 @@ def main():
     level_list = []
     level_list.append(levels.Level_01(player))
     level_list.append(levels.Level_02(player))
+    level_list.append(levels.Level_03(player))
+    level_list.append(levels.Level_04(player))
+
 
     # Set the current level
     current_level_no = 0
@@ -42,7 +45,7 @@ def main():
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
 
-    player.rect.x = 340
+    player.rect.x = 140
     player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
     active_sprite_list.add(player)
 
@@ -65,6 +68,8 @@ def main():
                     player.go_right()
                 if event.key == K_w or event.key == K_UP:
                     player.jump()
+                if event.key == K_q:
+                    done = True 
 
             if event.type == pygame.KEYUP:
                 if event.key == K_a or event.key == K_LEFT and player.change_x < 0:
