@@ -41,8 +41,8 @@ The python script is written with help from multiple sources
 
 The art work is my own creation. It is distributed under CC BY-SA 4.0 (see <https://creativecommons.org/licenses/by-sa/4.0/>)
 
-*Disclaimer*  The  game contains concepts and  characters depicted in the game the game Sky Children of Light.
- This priject is not affiliated to That Game  Company, the developer of Sky mobile game, and none of its 
-intellectual properties like  picture, screenshot has been used in this game 
+*Disclaimer*  The  game contains concepts and  characters depicted in the game Sky Children of Light.
+ This project is not affiliated to That Game Company, the developer of the mobile game, and none of its 
+intellectual properties like  picture, screenshot or music has been used in this game 
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c1108df4d4974287bb01bc17937f5441)](https://www.codacy.com/gh/mitradranirban/mypysky/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mitradranirban/mypysky&amp;utm_campaign=Badge_Grade) 
