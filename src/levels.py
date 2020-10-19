@@ -64,15 +64,15 @@ class Level():
             enemy.rect.x += shift_x
 
         for loot in self.loot_list:
-            loot.rect.x += shift.x 
+            loot.rect.x += shift_x 
 
 # Create platforms for the level
 class Level_01(Level):
     """ Definition for level 1. """
 
     def __init__(self, player):
+       
         """ Create level 1. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -81,11 +81,15 @@ class Level_01(Level):
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [platforms.GRASS, 500, 500],
-                  [platforms.SAND, 570, 500],
+        level = [ [platforms.GRASS, 400, 500],
+                  [platforms.SAND, 528, 500],
                   [platforms.STONE, 640, 500],
                   [platforms.ICE, 800, 400],
-                  [platforms.CLOUD, 870, 400],
+                  [platforms.ICE, 870, 400],
+                  [platforms.STONE, 938,500],
+                  [platforms.STONE, 1000,500],
+                  [platforms.STONE, 1064,500],
+                  [platforms.STONE, 1128,500]
                    ]
 
 
@@ -111,19 +115,19 @@ class Level_02(Level):
         Level.__init__(self, player)
 
         self.background = pygame.image.load(os.path.join('images',"isle.png")).convert()
-        self.background.set_colorkey(constants.WHITE)
-        self.level_limit = -2000
+        self.background.set_colorkey(constants.BLUE)
+        self.level_limit = -2600
 
         # Array with type of platform, and x, y location of the platform.
         level = [ [platforms.STONE, 500, 550, ],
                   [platforms.STONE, 570, 490],
                   [platforms.STONE, 640, 430],
-                  [platforms.GRASS, 800, 400],
-                  [platforms.GRASS, 870, 400],
-                  [platforms.GRASS, 940, 400],
+                  [platforms.GRASS, 800, 564],
+                  [platforms.GRASS, 870, 500],
+                  [platforms.GRASS, 940, 564],
                   [platforms.GRASS, 1000, 500],
                   [platforms.GRASS, 1070, 500],
-                  [platforms.GRASS, 1140, 500],
+                  [platforms.GRASS, 1140, 300],
                   [platforms.STONE, 1120, 280],
                   [platforms.STONE, 1190, 280],
                   [platforms.STONE, 1260, 280],
@@ -188,17 +192,17 @@ class Level_03(Level):
             block.player = self.player
             self.platform_list.add(block)
 
-        
-         # Add a custom moving platform
-        block = platforms.MovingPlatform(1500,300,constants.TILEX,constants.TILEY,platforms.CLOUD)
-        block.rect.x = 1500
-        block.rect.y = 300
-        block.boundary_top = 100
-        block.boundary_bottom = 550
-        block.change_y = -1
+          # Add a custom moving platform
+        block = platforms.MovingPlatform(1350,280,constants.TILEX,constants.TILEY,platforms.MANTA)
+        block.rect.x = 1350
+        block.rect.y = 280
+        block.boundary_left = 1350
+        block.boundary_right = 1600
+        block.change_x = 1
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
+      
 
 # Create platforms for the level 4
 class Level_04(Level):
@@ -216,17 +220,17 @@ class Level_04(Level):
 
         # Array with type of platform, and x, y location of the platform.
         level = [ [platforms.STONE, 500, 550, ],
-                  [platforms.STONE, 570, 550],
-                  [platforms.STONE, 640, 550],
+                  [platforms.STONE, 564, 550],
+                  [platforms.STONE, 628, 550],
                   [platforms.GRASS, 800, 400],
                   [platforms.GRASS, 870, 400],
                   [platforms.GRASS, 940, 400],
                   [platforms.GRASS, 1000, 500],
-                  [platforms.GRASS, 1070, 500],
-                  [platforms.GRASS, 1140, 500],
-                  [platforms.STONE, 1120, 280],
-                  [platforms.STONE, 1190, 280],
-                  [platforms.STONE, 2060, 280],
+                  [platforms.GRASS, 1064, 500],
+                  [platforms.GRASS, 1128, 500],
+                  [platforms.STONE, 1400, 280],
+                  [platforms.STONE, 1464, 280],
+                  [platforms.STONE, 1528, 280],
                   ]
 
 
@@ -237,3 +241,86 @@ class Level_04(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
+
+           # Add a custom moving platform
+        block = platforms.MovingPlatform(1500,300,constants.TILEX,constants.TILEY,platforms.JELLYFISH)
+        block.rect.x = 1500
+        block.rect.y = 300
+        block.boundary_top = 100
+        block.boundary_bottom = 550
+        block.change_y = -1
+        block.player = self.player
+        block.level = self
+        self.platform_list.add(block)
+
+
+class Level_05(Level):
+    """ Definition for level 5. """
+
+    def __init__(self, player):
+        """ Create level 5. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"valley.png")).convert()
+        self.level_limit = -2000
+
+
+class Level_06(Level):
+    """ Definition for level 6. """
+
+    def __init__(self, player):
+        """ Create level 6. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"wasteland.png")).convert()
+        self.background.set_colorkey(constants.WHITE)
+        self.level_limit = -2500
+
+
+
+class Level_07(Level):
+    """ Definition for level 7. """
+
+    def __init__(self, player):
+        """ Create level 7. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"vault.png")).convert()
+        self.background.set_colorkey(constants.WHITE)
+        self.level_limit = -2500
+        
+
+
+class Level_08(Level):
+    """ Definition for level 8. """
+
+    def __init__(self, player):
+        """ Create level 8. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"eden.png")).convert()
+        self.level_limit = -2500
+        
+
+
+class Level_09(Level):
+    """ Definition for level 9. """
+
+    def __init__(self, player):
+        """ Create level 9. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load(os.path.join('images',"orbit.png")).convert()
+        self.level_limit = -2500
+        
+

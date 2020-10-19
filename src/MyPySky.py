@@ -36,6 +36,11 @@ def main():
     level_list.append(levels.Level_02(player))
     level_list.append(levels.Level_03(player))
     level_list.append(levels.Level_04(player))
+    level_list.append(levels.Level_05(player))
+    level_list.append(levels.Level_06(player))
+    level_list.append(levels.Level_07(player))
+    level_list.append(levels.Level_08(player))
+    level_list.append(levels.Level_09(player))
 
 
     # Set the current level
