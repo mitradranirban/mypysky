@@ -3,7 +3,9 @@
 *mypysky* is a personal attempt to learn python programming by creating a game using pygame library as well as creating an interactive playable fanart for my favorite mobile game - Sky children of light 
 
 
-To download 'git clone mypysky'
+To download 
+
+`git clone mypysky`
  
 
 or download  the zip file and unzip it 
@@ -12,11 +14,13 @@ To play
 
 install python 3 . For details  go to https://python.org
 
-install pygame 'pip3 install pygame'
+install pygame 
+
+`pip3 install pygame`
 
 issue the following command from the src directory in command line 
 
-'python3 MyPySky.py'
+`python3 MyPySky.py`
 
  
 
