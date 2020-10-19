@@ -37,11 +37,10 @@ The python script is written with help from multiple sources
 1.  Pygame tutorial at opensource.com. It is distributed by GNU all-permissive licence <https://opensource.com/article/20/1/add-scorekeeping-your-python-game>
 2.  Simpson College Computer Science pygame tutorial <http://programarcadegames.com/python_examples/en/sprite_sheets/>
 3.  Pygame tutorial <https://www.pygame.org/docs/tut/MakeGames.html>
-4. Invent with Python by Al Sweigart <https://inventwithpython.com/pygame/> 
+4.  Invent with Python by Al Sweigart <https://inventwithpython.com/pygame/> 
 
 The art work is my own creation. It is distributed under CC BY-SA 4.0 (see <https://creativecommons.org/licenses/by-sa/4.0/>)
 
 *Disclaimer*  The  game contains concepts and  characters depicted in the game the game Sky Children of Light.
  This priject is not affiliated to That Game  Company, the developer of Sky mobile game, and none of its 
 intellectual properties like  picture, screenshot has been used in this game 
-
