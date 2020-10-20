@@ -4,10 +4,10 @@ import constants
 import platforms
 
 class Level():
+   
     """ This is a generic super-class used to define a level.
         Create a child class for each level with level-specific
         info. """
-
     # Lists of sprites used in all levels. Add or remove
     # lists as needed for your game. """
     platform_list = None
@@ -255,8 +255,8 @@ class Level_04(Level):
 
 
 class Level_05(Level):
-    """ Definition for level 5. """
 
+    """ Definition for level 5. """
     def __init__(self, player):
         """ Create level 5. """
 
@@ -268,11 +268,11 @@ class Level_05(Level):
 
 
 class Level_06(Level):
+   
     """ Definition for level 6. """
 
     def __init__(self, player):
         """ Create level 6. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -283,11 +283,11 @@ class Level_06(Level):
 
 
 class Level_07(Level):
+   
     """ Definition for level 7. """
 
     def __init__(self, player):
         """ Create level 7. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -298,11 +298,11 @@ class Level_07(Level):
 
 
 class Level_08(Level):
+    
     """ Definition for level 8. """
 
     def __init__(self, player):
         """ Create level 8. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -312,11 +312,11 @@ class Level_08(Level):
 
 
 class Level_09(Level):
+
     """ Definition for level 9. """
 
     def __init__(self, player):
         """ Create level 9. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
