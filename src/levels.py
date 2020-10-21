@@ -4,7 +4,7 @@ import constants
 import platforms
 
 class Level():
-   
+
     """ This is a generic super-class used to define a level.
         Create a child class for each level with level-specific
         info. """
@@ -65,6 +65,7 @@ class Level():
 
         for loot in self.loot_list:
             loot.rect.x += shift_x 
+    
 
 # Create platforms for the level
 class Level_01(Level):
@@ -100,6 +101,7 @@ class Level_01(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
+        
 
       
 
@@ -109,7 +111,7 @@ class Level_02(Level):
     """ Definition for level 2. """
 
     def __init__(self, player):
-        """ Create level 1. """
+        """ Create level 2. """
 
         # Call the parent constructor
         Level.__init__(self, player)
@@ -119,19 +121,15 @@ class Level_02(Level):
         self.level_limit = -2600
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [platforms.STONE, 500, 550, ],
-                  [platforms.STONE, 570, 490],
-                  [platforms.STONE, 640, 430],
-                  [platforms.GRASS, 800, 564],
-                  [platforms.GRASS, 870, 500],
-                  [platforms.GRASS, 940, 564],
-                  [platforms.GRASS, 1000, 500],
-                  [platforms.GRASS, 1070, 500],
-                  [platforms.GRASS, 1140, 300],
-                  [platforms.STONE, 1120, 280],
-                  [platforms.STONE, 1190, 280],
-                  [platforms.STONE, 1260, 280],
-                  ]
+        level = [ [platforms.STONE, 500, 550 ],
+                  [platforms.STONE, 600, 450],
+                  [platforms.STONE, 700, 350],
+                  [platforms.SAND, 900, 450],
+                  [platforms.STONE, 1100, 300],
+                  [platforms.STONE, 1300, 280],
+                  [platforms.STONE, 1650, 280],
+                  [platforms.GRASS, 1750, 400],
+                  [platforms.GRASS, 1850, 450]]
 
 
         # Go through the array above and add platforms
@@ -152,7 +150,19 @@ class Level_02(Level):
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
-       
+
+        # Add loot
+        level = [ [platforms.CANDLE, 700, 300],
+                  [platforms.CANDLE, 1700, 300]
+                 ]
+        for platform in level:
+            block = platforms.Platform(platform[1],platform[2],constants.TILEX,constants.TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.loot_list.add(block)        
+
+  
 
 # Create platforms for the level 3
 class Level_03(Level):
@@ -206,11 +216,11 @@ class Level_03(Level):
 
 # Create platforms for the level 4
 class Level_04(Level):
+   
     """ Definition for level 4. """
 
     def __init__(self, player):
         """ Create level 4. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -220,17 +230,17 @@ class Level_04(Level):
 
         # Array with type of platform, and x, y location of the platform.
         level = [ [platforms.STONE, 500, 550, ],
-                  [platforms.STONE, 564, 550],
-                  [platforms.STONE, 628, 550],
+                  [platforms.STONE, 600, 550],
+                  [platforms.STONE, 700, 550],
                   [platforms.GRASS, 800, 400],
-                  [platforms.GRASS, 870, 400],
-                  [platforms.GRASS, 940, 400],
+                  [platforms.GRASS, 900, 400],
+                  [platforms.GRASS, 1000, 400],
                   [platforms.GRASS, 1000, 500],
-                  [platforms.GRASS, 1064, 500],
-                  [platforms.GRASS, 1128, 500],
-                  [platforms.STONE, 1400, 280],
-                  [platforms.STONE, 1464, 280],
-                  [platforms.STONE, 1528, 280],
+                  [platforms.GRASS, 1100, 500],
+                  [platforms.GRASS, 1200, 500],
+                  [platforms.STONE, 1600, 300],
+                  [platforms.STONE, 1700, 300],
+                  [platforms.STONE, 1800, 300],
                   ]
 
 
@@ -259,7 +269,6 @@ class Level_05(Level):
     """ Definition for level 5. """
     def __init__(self, player):
         """ Create level 5. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 

@@ -8,7 +8,7 @@ import constants
 import os 
 
 from platforms import MovingPlatform
-from platforms import loot 
+import levels 
 
 class Player(pygame.sprite.Sprite):
     """ This class represents the player at the bottom that the player
@@ -31,6 +31,7 @@ class Player(pygame.sprite.Sprite):
 
     # List of sprites we can bump against
     level = None
+    loot_list = pygame.sprite.Group()
 
     # -- Methods
     def __init__(self):
@@ -145,6 +146,13 @@ class Player(pygame.sprite.Sprite):
             elif self.change_x < 0:
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
+
+        # see if we collect any star
+        loot_hit_list = pygame.sprite.spritecollide(self, self.level.loot_list, False)
+        for loot in loot_hit_list:
+            self.loot_list.remove(loot)
+            self.score += 1
+        
 
         # Move up/down
         self.rect.y += self.change_y
