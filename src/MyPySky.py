@@ -13,7 +13,6 @@ import pygame
 from pygame.locals import *
 import os
 
-"""Global constants."""
 
 # Colors
 BLACK    = (   0,   0,   0)
@@ -58,53 +57,18 @@ class Player(pygame.sprite.Sprite):
 
        
         # Load all the right facing images into a list
-        image = pygame.image.load(os.path.join('images','child1.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child2.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child3.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child4.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child5.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child6.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child7.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child8.png'))
-        self.walking_frames_r.append(image)
-        image = pygame.image.load(os.path.join('images','child9.png'))
-        self.walking_frames_r.append(image)
+        for i in range(1,9):
+            image = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
+            self.walking_frames_r.append(image)
+
 
         # Load all the right facing images, then flip them
         # to face left.
-        image = pygame.image.load(os.path.join('images','child1.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child2.png'))
-        image = pygame.transform.flip(image, True, False)
-        image = pygame.image.load(os.path.join('images','child3.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child4.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child5.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child6.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child7.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child8.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
-        image = pygame.image.load(os.path.join('images','child9.png'))
-        image = pygame.transform.flip(image, True, False)
-        self.walking_frames_l.append(image)
+        for i in rangei(1,9)
+            :mage = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
+            image = pygame.transform.flip(image, True, False)
+            self.walking_frames_l.append(image)
+
 
         # Set the image the player starts with
         self.image = self.walking_frames_r[0]
@@ -119,10 +83,10 @@ class Player(pygame.sprite.Sprite):
         self.jump_delta = 6
         self.score = 1
         
-    def update(self):
+    def update(self
         """ Move the player. """
         # Gravity
-        self.calc_grav()
+     
 
         # Move left/right
         self.rect.x += self.change_x
@@ -432,7 +396,6 @@ class Level_02(Level):
 
     def __init__(self, player):
         """ Create level 2. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
@@ -490,7 +453,6 @@ class Level_03(Level):
 
     def __init__(self, player):
         """ Create level 3. """
-
         # Call the parent constructor
         Level.__init__(self, player)
 
