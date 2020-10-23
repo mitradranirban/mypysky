@@ -6,7 +6,7 @@
 
 To download 
 
-`git clone mypysky`
+`git clone https://github.com/mitradranirban/mypysky`
  
 or download  the zip file and unzip it 
 
@@ -14,13 +14,13 @@ To play
 
 install python 3 . For details  go to <https://python.org>
 
-install pygame 
+install pygame module
 
-`pip3 install pygame`
+`pip install pygame`
 
 issue the following command from the src directory in command line 
 
-`python3 MyPySky.py`
+`python3 MyPySky.py`or open the file with python
 
 ## Player control 
 
