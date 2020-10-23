@@ -86,8 +86,7 @@ class Player(pygame.sprite.Sprite):
     def update(self
         """ Move the player. """
         # Gravity
-     
-
+        self.calc_grav()
         # Move left/right
         self.rect.x += self.change_x
         pos = self.rect.x + self.level.world_shift
@@ -110,9 +109,9 @@ class Player(pygame.sprite.Sprite):
                 self.rect.left = block.rect.right
 
         # see if we collect any star
-        loot_hit_list = pygame.sprite.spritecollide(self, self.loot_list, False)
+        loot_hit_list = pygame.sprite.spritecollide(self, self.level.loot_list, False)
         for loot in loot_hit_list:
-            self.loot_list.remove(loot)
+            self.level.loot_list.remove(loot)
             self.score += 1
         
 
