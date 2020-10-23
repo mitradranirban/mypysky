@@ -1,11 +1,10 @@
 """
 MyPySky Pygame Programs
-Simpson College Computer Science
+created by mitradranirban
 
 Main module for platform scroller.
 
-Modified from:
-http://programarcadegames.com/python_examples/sprite_sheets/
+distributed under GNU All-Permiśsive licence
 
 """
 
