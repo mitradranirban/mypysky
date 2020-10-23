@@ -205,7 +205,7 @@ class Level():
         if lvl == 1:
             enemy = Enemy(eloc[0],eloc[1],'crab.png') # spawn enemy
             enemy1 =  Enemy(eloc[2],eloc[3],'crab.png')
-            enemy2= Enemy(eloc[4],eloc[5],'krill.png')
+            enemy2= Enemy(eloc[4],eloc[5],'krill.gif')
             enemy_list = pygame.sprite.Group() # create enemy group
             enemy_list.add(enemy)  
             enemy_list.add(enemy1)   

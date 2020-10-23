@@ -1,10 +1,5 @@
-"""
-Module for managing platforms.
-"""
-import pygame
-import os 
-# import assets
-import constants
+""" Module for managing platforms. """
+
 
 def load_image(self, width, height):
         """ load a single image from image folder and make a pygame sprite. """
@@ -30,6 +25,7 @@ SAND = 'sand.png'
 CLOUD = 'cloud.png'
 MANTA = 'manta.png'
 JELLYFISH = 'jellyfish.png'
+CANDLE = 'candle.png'
  
 
 class Platform(pygame.sprite.Sprite):
