@@ -209,14 +209,9 @@ class Enemy(pygame.sprite.Sprite):
         for p in plat_hit_list:
             self.movey = 0
             if self.rect.y > p.rect.y:
-                self.rect.y = p.rect.y+constants.TILEY
+                self.rect.y = p.rect.y+TILEY
             else:
-                self.rect.y = p.rect.y-constants.TILEY
-               
-               
-""" Classes and functions 
- to Create the  platforms. """
-
+                self.rect.y = p.rect.y-TILEY
 
 def load_image(self, width, height):
     """ load a single image from image folder and make a pygame sprite. """
@@ -253,7 +248,7 @@ class Platform(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(os.path.join('images',image)).convert()
-        self.image.set_colorkey(BLACK)           
+        self.image.set_colorkey(BLACK)    
         self.rect = self.image.get_rect()
         self.rect.y = ylocation
         self.rect.x = xlocation
@@ -322,6 +317,8 @@ class MovingPlatform(Platform):
             self.change_x *= -1
 
 class loot(Platform):
+
+    """ A special platform player will collect to increase score. """
     level = None
     player = None
 
