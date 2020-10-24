@@ -61,7 +61,7 @@ class Player(pygame.sprite.Sprite):
 
         # Load all the right facing images, then flip them
         # to face left.
-        for i in rangei(1,9):
+        for i in range(1,9):
             image = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
             image = pygame.transform.flip(image, True, False)
             self.walking_frames_l.append(image)
