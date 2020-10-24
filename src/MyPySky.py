@@ -1,11 +1,10 @@
 """
-MyPySky Pygame Programs
+MyPySky 
 created by mitradranirban
 
-Main module for platform scroller.
+Pygame based platform scroller with sky fan art
 
 distributed under GNU All-Permiśsive licence
-
 """
 
 import pygame
@@ -19,7 +18,7 @@ BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
 BLUE     = (   0,   0, 255)
 
-# Screen dimensions
+# Screen and tiles dimensions
 SCREEN_WIDTH  = 1054
 SCREEN_HEIGHT = 594
 TILEX = 100
@@ -46,7 +45,6 @@ class Player(pygame.sprite.Sprite):
 
     # List of sprites we can bump against
     level = None
-    loot_list = pygame.sprite.Group()
 
     # -- Methods
     def __init__(self):
@@ -81,7 +79,7 @@ class Player(pygame.sprite.Sprite):
         self.collide_delta = 0
         self.jump_delta = 6
         self.score = 1
-        
+
     def update(self):
         """ Move the player. """
         # Gravity
@@ -107,7 +105,7 @@ class Player(pygame.sprite.Sprite):
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
 
-        # see if we collect any star
+        # see if we collect any loot
         loot_hit_list = pygame.sprite.spritecollide(self, self.level.loot_list, False)
         for loot in loot_hit_list:
             self.level.loot_list.remove(loot)
@@ -248,7 +246,7 @@ class Platform(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(os.path.join('images',image)).convert()
-        self.image.set_colorkey(BLACK)    
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.y = ylocation
         self.rect.x = xlocation
