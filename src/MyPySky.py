@@ -55,7 +55,6 @@ class Player(pygame.sprite.Sprite):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
 
-       
         # Load all the right facing images into a list
         for i in range(1,9):
             image = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
@@ -75,7 +74,7 @@ class Player(pygame.sprite.Sprite):
 
         # Set a referance to the image rect.
         self.rect = self.image.get_rect()
-        # Set Baseline score, health and collide delta 
+        # Set Baseline score, health and collide delta
 
         self.health = 10
         self.damage = 0
@@ -215,23 +214,24 @@ class Enemy(pygame.sprite.Sprite):
                 self.rect.y = p.rect.y-constants.TILEY
                
                
-""" Create the  platforms. """
+""" Classes and functions 
+ to Create the  platforms. """
 
 
 def load_image(self, width, height):
-        """ load a single image from image folder and make a pygame sprite. """
+    """ load a single image from image folder and make a pygame sprite. """
 
-        # Create a new blank image
-        image = pygame.Surface([width, height]).convert()
+    # Create a new blank image
+    image = pygame.Surface([width, height]).convert()
 
-        # Load the sprite from images folder
-        pygame.image.load(os.path.join('images',image)).convert()
+    # Load the sprite from images folder
+    pygame.image.load(os.path.join('images',image)).convert()
 
-        # Assuming black works as the transparent color
-        image.set_colorkey(BLACK)
+    # Assuming black works as the transparent color
+    image.set_colorkey(BLACK)
 
-        # Return the image
-        return image
+    # Return the image
+    return image
 
 
 
@@ -253,7 +253,7 @@ class Platform(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(os.path.join('images',image)).convert()
-        self.image.set_colorkey(BLACK)                                   
+        self.image.set_colorkey(BLACK)           
         self.rect = self.image.get_rect()
         self.rect.y = ylocation
         self.rect.x = xlocation
@@ -386,7 +386,7 @@ class Level():
             enemy.rect.x += shift_x
 
         for loot in self.loot_list:
-            loot.rect.x += shift_x 
+            loot.rect.x += shift_x
     
 
 # Create platforms for the level
@@ -481,7 +481,7 @@ class Level_02(Level):
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
-            self.loot_list.add(block)        
+            self.loot_list.add(block)
 
   
 
@@ -710,7 +710,7 @@ def main():
                 if event.key == K_w or event.key == K_UP:
                     player.jump()
                 if event.key == K_q:
-                    done = True 
+                    done = True
 
             if event.type == pygame.KEYUP:
                 if event.key == K_a or event.key == K_LEFT and player.change_x < 0:
