@@ -23,7 +23,7 @@ BLUE     = (   0,   0, 255)
 SCREEN_WIDTH  = 1054
 SCREEN_HEIGHT = 594
 TILEX = 100
-TILEY = 100
+TILEY = 50
 
 class Player(pygame.sprite.Sprite):
     """ This class represents the player at the bottom that the player
@@ -64,8 +64,8 @@ class Player(pygame.sprite.Sprite):
 
         # Load all the right facing images, then flip them
         # to face left.
-        for i in rangei(1,9)
-            :mage = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
+        for i in rangei(1,9):
+            image = pygame.image.load(os.path.join('images','child'+str(i)+'.png'))
             image = pygame.transform.flip(image, True, False)
             self.walking_frames_l.append(image)
 
@@ -83,7 +83,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_delta = 6
         self.score = 1
         
-    def update(self
+    def update(self):
         """ Move the player. """
         # Gravity
         self.calc_grav()
@@ -114,7 +114,6 @@ class Player(pygame.sprite.Sprite):
             self.level.loot_list.remove(loot)
             self.score += 1
         
-
         # Move up/down
         self.rect.y += self.change_y
 
