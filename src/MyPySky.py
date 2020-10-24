@@ -419,7 +419,16 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
         
-
+        # Add loot
+        level = [ [  CANDLE, 100, 400],
+                  [  CANDLE, 1700, 300]
+                 ]
+        for platform in level:
+            block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.loot_list.add(block)
       
 
 
