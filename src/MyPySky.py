@@ -8,6 +8,7 @@ distributed under GNU All-Permiśsive licence
 """
 
 import pygame
+import pygame.freetype
 from pygame.locals import *
 import os
 import random
@@ -110,7 +111,25 @@ class Player(pygame.sprite.Sprite):
         for loot in loot_hit_list:
             self.level.loot_list.remove(loot)
             self.score += 1
-        
+ 
+        # contact with enemy
+
+        enemy_hit_list = pygame.sprite.spritecollide(self, self.level.enemy_list, False)
+        if self.damage == 0:
+            for enemy in enemy_hit_list:
+                if not self.rect.contains(enemy):
+                    self.damage = self.rect.colliderect(enemy)
+        if self.damage == 1:
+            idx = self.rect.collidelist(enemy_hit_list)
+            if idx == -1:
+                self.damage = 0   # set damage back to 0
+                self.health -= 1  # subtract 1 hp
+
+        # Move up/down
+
+        self.rect.y += self.change_y
+
+
         # Move up/down
         self.rect.y += self.change_y
 
@@ -319,6 +338,14 @@ class loot(Platform):
     """ A special platform player will collect to increase score. """
     level = None
     player = None
+    
+class star(Platform):
+	
+	""" A special platform player wil collect to increase health. """
+	level = None
+	player = None
+
+    
 
 class Level():
 
@@ -359,7 +386,7 @@ class Level():
         # Draw the background
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
-        screen.fill(BLUE)
+        screen.fill(WHITE)
         screen.blit(self.background,(self.world_shift // 3,0))
 
         # Draw all the sprite lists that we have
@@ -395,7 +422,7 @@ class Level_01(Level):
         Level.__init__(self, player)
 
         self.background = pygame.image.load(os.path.join('images',"home.png")).convert()
-        self.background.set_colorkey(WHITE)
+        self.background.set_colorkey(BLACK)
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
