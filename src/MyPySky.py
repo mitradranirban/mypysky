@@ -345,8 +345,6 @@ class star(Platform):
 	level = None
 	player = None
 
-    
-
 class Level():
 
     """ This is a generic super-class used to define a level.
@@ -357,6 +355,7 @@ class Level():
     platform_list = None
     enemy_list = None
     loot_list = None
+    star_list = None
 
     # Background image
     background = None
@@ -371,14 +370,16 @@ class Level():
         self.platform_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.loot_list = pygame.sprite.Group()
+        self.star_list = pygame.sprite.Group()
         self.player = player
 
-    # Update everythign on this level
+    # Update everything on this level
     def update(self):
         """ Update everything in this level."""
         self.platform_list.update()
         self.enemy_list.update()
         self.loot_list.update()
+        self.star_list.update()
 
     def draw(self, screen):
         """ Draw everything on this level. """
@@ -393,6 +394,7 @@ class Level():
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
         self.loot_list.draw(screen)
+        self.star_list.draw(screen)
 
     def shift_world(self, shift_x):
         """ When the user moves left/right and we need to scroll everything: """
@@ -409,7 +411,8 @@ class Level():
 
         for loot in self.loot_list:
             loot.rect.x += shift_x
-    
+        for star in self.star_list:
+        	star.rect.x += shift_x 
 
 # Create platforms for the level
 class Level_01(Level):
@@ -473,16 +476,15 @@ class Level_02(Level):
         self.level_limit = -2600
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 500, 550 ],
-                  [  STONE, 600, 450],
-                  [  STONE, 700, 350],
+          level = [ [  SAND,, 500, 550 ],
+                  [  SAND, 600, 450],
+                  [  SAND, 700, 350],
                   [  SAND, 900, 450],
                   [  STONE, 1100, 300],
-                  [  STONE, 1300, 280],
+                  [  STONE, 1300, 280],  
                   [  STONE, 1650, 280],
                   [  GRASS, 1750, 400],
-                  [  GRASS, 1850, 450]]
-
+                  [  GRASS, 1850, 400]]
 
         # Go through the array above and add platforms
         for platform in level:
@@ -529,21 +531,20 @@ class Level_03(Level):
         self.background.set_colorkey( WHITE)
         self.level_limit = -1500
 
-        # Array with type of platform, and x, y location of the platform.
+         # Array with type of platform, and x, y location of the platform.
         level = [ [  STONE, 500, 550, ],
                   [  STONE, 570, 550],
                   [  STONE, 640, 550],
                   [  GRASS, 800, 400],
                   [  GRASS, 870, 400],
                   [  GRASS, 940, 400],
-                  [  GRASS, 1000, 500],
+                  [  GRASS, 1000, 400],
                   [  GRASS, 1070, 500],
                   [  GRASS, 1140, 500],
                   [  STONE, 1120, 280],
                   [  STONE, 1190, 280],
                   [  STONE, 2060, 280],
                   ]
-
 
         # Go through the array above and add platforms
         for platform in level:
@@ -563,7 +564,10 @@ class Level_03(Level):
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
-      
+
+        # Add enemy
+        enemy = Enemy(220,550,"crab.png")
+        self.enemy_list.add(enemy)
 
 # Create platforms for the level 4
 class Level_04(Level):
@@ -587,11 +591,11 @@ class Level_04(Level):
                   [  GRASS, 900, 400],
                   [  GRASS, 1000, 400],
                   [  GRASS, 1000, 500],
-                  [  GRASS, 1100, 500],
-                  [  GRASS, 1200, 500],
+                  [  GRASS, 1100, 200],
+                  [  GRASS, 1200, 300],
                   [  STONE, 1600, 300],
-                  [  STONE, 1700, 300],
-                  [  STONE, 1800, 300],
+                  [  STONE, 1700, 400],
+                  [  STONE, 1800, 500],
                   ]
 
 
@@ -692,6 +696,10 @@ def main():
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
+    # add font path and create pygame font
+    font_path = os.path.join("fonts","ani.ttf")
+    font_size = TILEY
+    myfont = pygame.freetype.Font(font_path,font_size)
     pygame.display.set_caption("MyPySky python based sky fan art game")
 
     # Create the player
@@ -748,7 +756,16 @@ def main():
                     player.stop()
                 if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
-
+        # create the pygame font object
+        
+        font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
+        font_size = TILEY
+        myfont = pygame.freetype.Font(font_path, font_size)
+        
+        def stats(score,health):
+	        myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
+	        myfont.render_to(screen, (850,4),"Health-"+str(health), WHITE, None, size = TILEY)
+	
         # Update the player.
         active_sprite_list.update()
 
@@ -756,16 +773,23 @@ def main():
         current_level.update()
 
         # If the player gets near the right side, shift the world left (-x)
-        if player.rect.x >= 500:
-            diff = player.rect.x - 500
-            player.rect.x = 500
+        if player.rect.x >= 800:
+            diff = player.rect.x - 800
+            player.rect.x = 800
             current_level.shift_world(-diff)
 
         # If the player gets near the left side, shift the world right (+x)
-        if player.rect.x <= 120:
-            diff = 120 - player.rect.x
-            player.rect.x = 120
+        if player.rect.x <= 10:
+            diff = 10 - player.rect.x
+            player.rect.x = 10
             current_level.shift_world(diff)
+                    
+
+        # if player health less than zero go back to home
+
+        if player.health < 0:
+        	current_level = level_list[0]
+        	player.level = current_level
 
         # If the player gets to the end of the level, go to the next level
         current_position = player.rect.x + current_level.world_shift
