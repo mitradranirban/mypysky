@@ -450,7 +450,7 @@ class Level_01(Level):
             self.platform_list.add(block)
         
         # Add loot
-        level = [ [  CANDLE, 100, 400],
+       level = [ [  CANDLE, 100, 400],
                   [  CANDLE, 1700, 300]
                  ]
         for platform in level:
@@ -476,7 +476,7 @@ class Level_02(Level):
         self.level_limit = -2600
 
         # Array with type of platform, and x, y location of the platform.
-          level = [ [  SAND,, 500, 550 ],
+        level = [ [  SAND, 500, 550 ],
                   [  SAND, 600, 450],
                   [  SAND, 700, 350],
                   [  SAND, 900, 450],
