@@ -255,6 +255,7 @@ CLOUD = 'cloud.png'
 MANTA = 'manta.png'
 JELLYFISH = 'jellyfish.png'
 CANDLE = 'candle.png'
+STAR = ' star.png'
  
 
 class Platform(pygame.sprite.Sprite):
@@ -450,7 +451,7 @@ class Level_01(Level):
             self.platform_list.add(block)
         
         # Add loot
-       level = [ [  CANDLE, 100, 400],
+        level = [ [  CANDLE, 100, 400],
                   [  CANDLE, 1700, 300]
                  ]
         for platform in level:
