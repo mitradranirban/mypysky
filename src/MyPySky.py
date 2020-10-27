@@ -83,7 +83,7 @@ class Player(pygame.sprite.Sprite):
         self.score = 1
 
     def update(self):
-    """ Move the player. """
+        """ Move the player. """
         # Gravity
         self.calc_grav()
         # Move left/right
@@ -697,10 +697,7 @@ def main():
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    # add font path and create pygame font
-    font_path = os.path.join("fonts","ani.ttf")
-    font_size = TILEY
-    myfont = pygame.freetype.Font(font_path,font_size)
+
     pygame.display.set_caption("MyPySky python based sky fan art game")
 
     # Create the player
@@ -757,8 +754,9 @@ def main():
                     player.stop()
                 if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
+
         # create the pygame font object
-        
+
         font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
         font_size = TILEY
         myfont = pygame.freetype.Font(font_path, font_size)
