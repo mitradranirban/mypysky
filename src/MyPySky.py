@@ -151,7 +151,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.x += block.change_x
 
     def calc_grav(self):
-    """ Calculate effect of gravity. """
+        """ Calculate effect of gravity. """
         if self.change_y == 0:
             self.change_y = 1
         else:
@@ -163,7 +163,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = SCREEN_HEIGHT - self.rect.height
 
     def jump(self):
-    """ Called when user hits 'jump' button. """
+        """ Called when user hits 'jump' button. """
 
         # move down a bit and see if there is a platform below us.
         # Move down 2 pixels because it doesn't work well if we only move down 1
@@ -178,17 +178,17 @@ class Player(pygame.sprite.Sprite):
 
     # Player-controlled movement:
     def go_left(self):
-    """ Called when the user hits the left arrow. """
+        """ Called when the user hits the left arrow. """
         self.change_x = -6
         self.direction = "L"
 
     def go_right(self):
-    """ Called when the user hits the right arrow. """
+        """ Called when the user hits the right arrow. """
         self.change_x = 6
         self.direction = "R"
 
     def stop(self):
-    """ Called when the user lets off the keyboard. """
+        """ Called when the user lets off the keyboard. """
         self.change_x = 0
     
 class Enemy(pygame.sprite.Sprite):
@@ -206,7 +206,7 @@ class Enemy(pygame.sprite.Sprite):
         self.counter = 0
 
     def move(self):
-    ''' enemy movement '''
+        ''' enemy movement '''
         distance = random.randint(10,40)
         speed = random.randint(1,4)
         self.movey += 1.2
@@ -232,7 +232,7 @@ class Enemy(pygame.sprite.Sprite):
                 self.rect.y = p.rect.y-TILEY
 
 def load_image(self, width, height):
-""" load a single image from image folder and make a pygame sprite. """
+    """ load a single image from image folder and make a pygame sprite. """
     # Create a new blank image
     image = pygame.Surface([width, height]).convert()
 
@@ -263,7 +263,7 @@ class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 
     def __init__(self, xlocation, ylocation, imagewidth, imageheight, image):
-    """ Platform constructorfrom individual images. """
+        """ Platform constructorfrom individual images. """
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(os.path.join('images',image)).convert()
@@ -377,14 +377,14 @@ class Level():
 
     # Update everything on this level
     def update(self):
-    """ Update everything in this level."""
+        """ Update everything in this level."""
         self.platform_list.update()
         self.enemy_list.update()
         self.loot_list.update()
         self.star_list.update()
 
     def draw(self, screen):
-    """ Draw everything on this level. """
+        """ Draw everything on this level. """
         # Draw the background
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
@@ -413,7 +413,7 @@ class Level():
         for loot in self.loot_list:
             loot.rect.x += shift_x
 
-        for star in self.star_list
+        for star in self.star_list:
             star.rect.x += shift_x 
 
 # Create platforms for the level
@@ -421,8 +421,8 @@ class Level_01(Level):
 
     """ Definition for level 1. """
 
-    def __init__(self, player)
-    """ Create level 1. """
+    def __init__(self, player):
+        """ Create level 1. """
         # Call the parent constructor
         Level.__init__(self, player)
         self.background = pygame.image.load(os.path.join('images',"home.png")).convert()
