@@ -193,8 +193,7 @@ class Player(pygame.sprite.Sprite):
 
 class Enemy(pygame.sprite.Sprite):
 
-    ''' Spawn an enemy '''
-               
+    ''' Spawn an enemy '''  
     def __init__(self,x,y,img):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join('images',img))
