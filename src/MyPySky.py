@@ -190,7 +190,7 @@ class Player(pygame.sprite.Sprite):
     def stop(self):
         """ Called when the user lets off the keyboard. """
         self.change_x = 0
-    
+
 class Enemy(pygame.sprite.Sprite):
 
     ''' Spawn an enemy '''
@@ -414,7 +414,7 @@ class Level():
             loot.rect.x += shift_x
 
         for star in self.star_list:
-            star.rect.x += shift_x 
+            star.rect.x += shift_x
 
 # Create platforms for the level
 class Level_01(Level):
@@ -762,8 +762,8 @@ def main():
         myfont = pygame.freetype.Font(font_path, font_size)
         
         def stats(score,health):
-	        myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
-	        myfont.render_to(screen, (850,4),"Health-"+str(health), WHITE, None, size = TILEY)
+            myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
+            myfont.render_to(screen, (850,4),"Health-"+str(health), WHITE, None, size = TILEY)
 	
         # Update the player.
         active_sprite_list.update()
