@@ -603,7 +603,6 @@ class Level_03(Level):
         enemy.rect.y = 500
         enemy.boundary_left = random.randint(500,600)
         enemy.boundary_right = random.randint(600,700)
-        print(enemy.boundary_left,enemy.boundary_right)
         enemy.change_x = random.randint(1,5)
         enemy.player = self.player
         enemy.level = self
@@ -647,7 +646,7 @@ class Level_04(Level):
             block.player = self.player
             self.platform_list.add(block)
 
-           # Add a custom moving platform
+        # Add a custom moving platform
         block =   MovingPlatform(1500,300,TILEX,TILEY,  JELLYFISH)
         block.rect.x = 1500
         block.rect.y = 300
@@ -658,6 +657,26 @@ class Level_04(Level):
         block.level = self
         self.platform_list.add(block)
 
+        # Add enemies
+        enemy = Enemy(1300,500,"rain.png")
+        enemy.rect.x = 1300
+        enemy.rect.y = 500
+        enemy.boundary_top = 400
+        enemy.boundary_right = 550
+        enemy.change_y = random.randint(1,5)
+        enemy.player = self.player
+        enemy.level = self
+        self.enemy_list.add(enemy)
+
+        enemy = Enemy(1600,500,"crab.png")
+        enemy.rect.x = 1600
+        enemy.rect.y = 500
+        enemy.boundary_left = random.randint(1400,1600)
+        enemy.boundary_right = random.randint(1600,1800)
+        enemy.change_x = random.randint(1,5)
+        enemy.player = self.player
+        enemy.level = self
+        self.enemy_list.add(enemy)
 
 class Level_05(Level):
 
