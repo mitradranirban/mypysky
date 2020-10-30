@@ -107,11 +107,17 @@ class Player(pygame.sprite.Sprite):
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
 
-        # see if we collect any loot
+        # see if we collect any candle
         loot_hit_list = pygame.sprite.spritecollide(self, self.level.loot_list, False)
         for loot in loot_hit_list:
             self.level.loot_list.remove(loot)
             self.score += 1
+
+        # increase health by collecting stars
+        star_hit_list = pygame.sprite.spritecollide(self, self.level.star_list, False)
+        for star in star_hit_list:
+            self.level.star_list.remove(star)
+            self.health += 1        
 
         # contact with enemy
 
@@ -197,38 +203,65 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self,x,y,img):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join('images',img))
-        self.movey = 0
         self.image.convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.counter = 0
+        self.change_x = 0
+        self.change_y = 0
+        self.boundary_top = 0
+        self.boundary_bottom = 0
+        self.boundary_left = 0
+        self.boundary_right = 0
 
-    def move(self):
+        level = None
+        player = None
+
+
+    def update(self):
         ''' enemy movement '''
-        distance = random.randint(10,40)
-        speed = random.randint(1,4)
-        self.movey += 1.2
-    
-        if self.counter >= 0 and self.counter <= distance:
-            self.rect.x += speed
-        elif self.counter >= distance and self.counter <= distance*2:
-            self.rect.x -= speed
-        else:
-            self.counter = 0
-       
-        self.counter += 1
+        # Move left/right
+        self.rect.x += self.change_x
 
-        if not self.rect.y >= SCREEN_HEIGHT - TILEX:
-            self.rect.y += self.movey
+        # See if we hit the player
+        hit = pygame.sprite.collide_rect(self, self.player)
+        if hit:
+            # We did hit the player. Shove the player around and
+            # assume he/she won't hit anything else.
 
-        plat_hit_list = pygame.sprite.spritecollide(self, levels.platform_list, False)
-        for p in plat_hit_list:
-            self.movey = 0
-            if self.rect.y > p.rect.y:
-                self.rect.y = p.rect.y+TILEY
+            # If we are moving right, set our right side
+            # to the left side of the item we hit
+            if self.change_x < 0:
+                self.player.rect.right = self.rect.left
             else:
-                self.rect.y = p.rect.y-TILEY
+                # Otherwise if we are moving left, do the opposite.
+                self.player.rect.left = self.rect.right
+
+        # Move up/down
+        self.rect.y += self.change_y
+
+        # Check and see if we hit the player
+        hit = pygame.sprite.collide_rect(self, self.player)
+        if hit:
+            # We did hit the player. Shove the player around and
+            # assume he/she won't hit anything else.
+
+            # Reset our position based on the top/bottom of the object.
+            if self.change_y < 0:
+                self.player.rect.bottom = self.rect.top
+            else:
+                self.player.rect.top = self.rect.bottom
+
+        # Check the boundaries and see if we need to reverse
+        # direction.
+        if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
+            self.change_y *= -1
+
+        cur_pos = self.rect.x - self.level.world_shift
+        if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
+            self.change_x *= -1
+
 
 def load_image(self, width, height):
     """ load a single image from image folder and make a pygame sprite. """
@@ -533,11 +566,10 @@ class Level_03(Level):
 
          # Array with type of platform, and x, y location of the platform.
         level = [ [  STONE, 500, 550, ],
-                  [  STONE, 570, 550],
-                  [  STONE, 640, 550],
+                  [  STONE, 600, 550],
+                  [  STONE, 700, 550],
                   [  GRASS, 800, 400],
-                  [  GRASS, 870, 400],
-                  [  GRASS, 940, 400],
+                  [  GRASS, 900, 400],
                   [  GRASS, 1000, 400],
                   [  GRASS, 1070, 500],
                   [  GRASS, 1140, 500],
@@ -566,7 +598,15 @@ class Level_03(Level):
         self.platform_list.add(block)
 
         # Add enemy
-        enemy = Enemy(220,550,"crab.png")
+        enemy = Enemy(600,500,"crab.png")
+        enemy.rect.x = 600
+        enemy.rect.y = 500
+        enemy.boundary_left = random.randint(500,600)
+        enemy.boundary_right = random.randint(600,700)
+        print(enemy.boundary_left,enemy.boundary_right)
+        enemy.change_x = random.randint(1,5)
+        enemy.player = self.player
+        enemy.level = self
         self.enemy_list.add(enemy)
 
 # Create platforms for the level 4
