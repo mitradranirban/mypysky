@@ -5,7 +5,7 @@ created by mitradranirban
 
 Pygame based platform scroller with sky fan art
 
-distributed under GNU All-Permiśsive licence
+distributed under GNU All-Permissive licence
 """
 
 import pygame
@@ -25,6 +25,18 @@ SCREEN_WIDTH  = 1054
 SCREEN_HEIGHT = 594
 TILEX = 100
 TILEY = 50
+GRASS = 'grass.png'
+STONE = 'stone.png'
+ICE = 'ice.png'
+SAND = 'sand.png'
+CLOUD = 'cloud.png'
+MANTA = 'manta.png'
+JELLYFISH = 'jellyfish.png'
+CANDLE = 'candle.png'
+STAR = 'star.png'
+KRILL = 'krill.png'
+ROCK = 'rock.png'
+ARC = 'arc.png'
 
 class Player(pygame.sprite.Sprite):
 
@@ -277,22 +289,6 @@ def load_image(self, width, height):
     # Return the image
     return image
 
-
-
-GRASS = 'grass.png'
-STONE = 'stone.png'
-ICE = 'ice.png'
-SAND = 'sand.png'
-CLOUD = 'cloud.png'
-MANTA = 'manta.png'
-JELLYFISH = 'jellyfish.png'
-CANDLE = 'candle.png'
-STAR = 'star.png'
-KRILL = 'krill.png'
-ROCK = 'rock.png'
-ARC = 'arc.png'
- 
-
 class Platform(pygame.sprite.Sprite):
 
     """ Platform the user can jump on """
@@ -306,7 +302,6 @@ class Platform(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.y = ylocation
         self.rect.x = xlocation
-
 
 class MovingPlatform(Platform):
 
@@ -494,9 +489,6 @@ class Level_01(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.loot_list.add(block)
-      
-
-
 # Create platforms for the level 2
 class Level_02(Level):
 
@@ -561,8 +553,6 @@ class Level_02(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-  
-
 # Create platforms for the level 3
 class Level_03(Level):
 
@@ -711,7 +701,7 @@ class Level_04(Level):
         enemy.player = self.player
         enemy.level = self
         self.enemy_list.add(enemy)
-
+# Create platforms for the level 5
 class Level_05(Level):
 
     """ Definition for level 5. """
@@ -764,7 +754,7 @@ class Level_05(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-
+# Create platforms for the level 6
 class Level_06(Level):
    
     """ Definition for level 6. """
@@ -792,7 +782,7 @@ class Level_06(Level):
                   [  GRASS, 2400, 300],
                   [  STONE, 2600, 100],
                   [  STONE, 2800, 200],
-                  [  STONE, 2800, 400],
+                  [  STONE, 3000, 400],
                   ]
 
 
@@ -805,10 +795,10 @@ class Level_06(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block =   MovingPlatform(1500,300,TILEX,TILEY,  ARC)
-        block.rect.x = 1500
+        block =   MovingPlatform(700,300,TILEX,TILEY, ARC)
+        block.rect.x = 700
         block.rect.y = 300
-        block.boundary_top = 100
+        block.boundary_top = 200
         block.boundary_bottom = 550
         block.change_y = -1
         block.player = self.player
@@ -842,8 +832,9 @@ class Level_06(Level):
         # Add candles
         level = [ 
                 [ CANDLE, 1200, 300],
-                [ CANDLE, 1200, 400],
-                [ CANDLE, 2700, 300]
+                [ CANDLE, 1600, 400],
+                [ CANDLE, 2200, 350],
+                [ CANDLE, 2700, 300],
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -853,8 +844,9 @@ class Level_06(Level):
             self.loot_list.add(block)
 
         # Add star
-        level = [ [  STAR, 700, 200],
-                  [  STAR, 1900, 100]
+        level = [ [ STAR, 700, 200],
+                  [ STAR, 1300, 450],
+                  [ STAR, 2600, 200],
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -862,7 +854,7 @@ class Level_06(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-
+# Create platforms for the level 7
 class Level_07(Level):
    
     """ Definition for level 7. """
@@ -876,22 +868,18 @@ class Level_07(Level):
         self.background.set_colorkey( WHITE)
         self.level_limit = -2500
  # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 500, 550, ],
-                  [  STONE, 600, 550],
-                  [  STONE, 700, 550],
+        level = [ [  STONE, 600, 550],
                   [  STONE, 800, 300],
-                  [  STONE, 900, 100],
-                  [  STONE, 1200, 450],
                   [  STONE, 1100, 350],
                   [ STONE, 1900, 400],
                   [  STONE, 700, 200],
                   [  STONE, 1200, 250],
-                  [  STONE, 1200, 300],
+                  [  STONE, 2200, 300],
                   [  STONE, 1100, 100],
                   [  STONE, 2300, 200],
                   [  STONE, 2600, 100],
                   [ STONE, 2800,100],
-                  [ STONE, 2000, 100]
+                  [ STONE, 3000, 100]
                   ]
 
 
@@ -905,7 +893,7 @@ class Level_07(Level):
 
         # Add a custom moving platform
         block =   MovingPlatform(1000,300,TILEX,TILEY, STONE)
-        block.rect.x = 1000
+        block.rect.x = 1600
         block.rect.y = 300
         block.boundary_top = 100
         block.boundary_bottom = 550
@@ -937,7 +925,7 @@ class Level_07(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-
+# Create platforms for the level 8
 class Level_08(Level):
     
     """ Definition for level 8. """
@@ -949,11 +937,56 @@ class Level_08(Level):
 
         self.background = pygame.image.load(os.path.join('images',"eden.png")).convert()
         self.level_limit = -2500
-        
+        level = [ [ STONE, 600, 550],
+                  [ STONE, 800, 300],
+                  [ STONE, 1100, 350],
+                  [ STONE, 1900, 400],
+                  [ STONE, 700, 200],
+                  [ STONE, 1200, 250],
+                  [ STONE, 2600, 100],
+                  [ STONE, 2800,100],
+                  [ STONE, 3000, 100]
+                  ]
+
+
+        # Go through the array above and add platforms
+        for platform in level:
+            block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.platform_list.add(block)
+
+       # Add enemies
+        enemy = Enemy(1200,300,"krill.png")
+        enemy.rect.x = 1200
+        enemy.rect.y = 300
+        enemy.boundary_top = 100
+        enemy.boundary_bottom = 550
+        enemy.boundary_left = 1000
+        enemy.boundary_right = 1400
+        enemy.change_x = random.randint(3,5)
+        enemy.change_y = random.randint(3,5)
+        enemy.player = self.player
+        enemy.level = self
+        self.enemy_list.add(enemy)
+       
+        enemy = Enemy(2700,500,"rock.png")
+        enemy.rect.x = 2700
+        enemy.rect.y = 300
+        enemy.boundary_top = 100
+        enemy.boundary_bottom = 550
+        enemy.boundary_left = 2500
+        enemy.boundary_right = 2900
+        enemy.change_x = random.randint(3,5)
+        enemy.change_y = random.randint(3,5)
+        enemy.player = self.player
+        enemy.level = self
+        self.enemy_list.add(enemy)
  # Add candles
         level = [ 
                 [ CANDLE, 1200, 300],
-                [ CANDLE, 1200, 400],
+                [ CANDLE, 1600, 400],
                 [ CANDLE, 2700, 300]
                  ]
         for platform in level:
@@ -965,7 +998,9 @@ class Level_08(Level):
 
         # Add star
         level = [ [  STAR, 700, 300],
-                  [  STAR, 1700, 300]
+                  [  STAR, 1700, 300],
+                  [ STAR, 1750,350],
+
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -973,7 +1008,7 @@ class Level_08(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-
+# Create platforms for the level 4
 class Level_09(Level):
 
     """ Definition for level 9. """
@@ -1061,7 +1096,7 @@ def main():
         
         def stats(score,health):
             myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
-            myfont.render_to(screen, (850,4),"Health-"+str(health), WHITE, None, size = TILEY)
+            myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
 	
         # Update the player.
         active_sprite_list.update()
