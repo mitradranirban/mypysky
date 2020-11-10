@@ -14,6 +14,9 @@ from pygame.locals import *
 import os
 import random
 
+# Initiate pygame modules
+pygame.init()
+pygame.mixer.init()
 
 # Colors
 BLACK    = (   0,   0,   0)
@@ -25,6 +28,8 @@ SCREEN_WIDTH  = 1054
 SCREEN_HEIGHT = 594
 TILEX = 100
 TILEY = 50
+
+# pictures used for tiles
 GRASS = 'grass.png'
 STONE = 'stone.png'
 ICE = 'ice.png'
@@ -37,6 +42,27 @@ STAR = 'star.png'
 KRILL = 'krill.png'
 ROCK = 'rock.png'
 ARC = 'arc.png'
+
+# create the pygame font object
+font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
+font_size = TILEY
+myfont = pygame.freetype.Font(font_path, font_size)
+
+def stats(score,health):
+    """display score and health on the screen"""
+    myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
+    myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
+
+# sounds used for effect
+s = 'sounds'
+tada = pygame.mixer.Sound(os.path.join(s, 'tada.OGG'))
+wow = pygame.mixer.Sound(os.path.join(s, 'wow.OGG'))
+tung = pygame.mixer.Sound(os.path.join(s, 'tung.OGG'))
+
+"""
+Create objects required 
+for the game
+"""
 
 class Player(pygame.sprite.Sprite):
 
@@ -119,16 +145,18 @@ class Player(pygame.sprite.Sprite):
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
 
-        # see if we collect any candle
+        # increase score  by collecting candles
         loot_hit_list = pygame.sprite.spritecollide(self, self.level.loot_list, False)
         for loot in loot_hit_list:
             self.level.loot_list.remove(loot)
+            pygame.mixer.Sound.play(tada)
             self.score += 1
 
         # increase health by collecting stars
         star_hit_list = pygame.sprite.spritecollide(self, self.level.star_list, False)
         for star in star_hit_list:
             self.level.star_list.remove(star)
+            pygame.mixer.Sound.play(tung)
             self.health += 1        
 
         # contact with enemy
@@ -142,6 +170,7 @@ class Player(pygame.sprite.Sprite):
             idx = self.rect.collidelist(enemy_hit_list)
             if idx == -1:
                 self.damage = 0   # set damage back to 0
+                pygame.mixer.Sound.play(wow)
                 self.health -= 1  # subtract 1 hp
 
         # Move up/down
@@ -1024,7 +1053,7 @@ class Level_09(Level):
 
 def main():
     """ Main Program """
-    pygame.init()
+    
 
     # Set the height and width of the screen
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
@@ -1088,16 +1117,6 @@ def main():
                 if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
 
-        # create the pygame font object
-
-        font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
-        font_size = TILEY
-        myfont = pygame.freetype.Font(font_path, font_size)
-        
-        def stats(score,health):
-            myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
-            myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
-	
         # Update the player.
         active_sprite_list.update()
 
