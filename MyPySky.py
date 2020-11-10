@@ -60,7 +60,7 @@ wow = pygame.mixer.Sound(os.path.join(s, 'wow.OGG'))
 tung = pygame.mixer.Sound(os.path.join(s, 'tung.OGG'))
 
 """
-Create objects required 
+Create objects required
 for the game
 """
 
@@ -157,7 +157,7 @@ class Player(pygame.sprite.Sprite):
         for star in star_hit_list:
             self.level.star_list.remove(star)
             pygame.mixer.Sound.play(tung)
-            self.health += 1        
+            self.health += 1
 
         # contact with enemy
 
@@ -240,7 +240,7 @@ class Player(pygame.sprite.Sprite):
 
 class Enemy(pygame.sprite.Sprite):
 
-    ''' Spawn an enemy '''  
+    ''' Spawn an enemy '''
     def __init__(self,x,y,img):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join('images',img))
@@ -255,10 +255,6 @@ class Enemy(pygame.sprite.Sprite):
         self.boundary_bottom = 0
         self.boundary_left = 0
         self.boundary_right = 0
-
-        level = None
-        player = None
-
 
     def update(self):
         ''' enemy movement '''
@@ -400,7 +396,7 @@ class loot(Platform):
     """ A special platform player will collect to increase score. """
     level = None
     player = None
-    
+
 class star(Platform):
 	
     """ A special platform player wil collect to increase health. """
