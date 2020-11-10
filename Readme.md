@@ -4,13 +4,13 @@
 
 *mypysky* is a personal attempt to learn python programming by creating a game using pygame library as well as creating an interactive playable fanart for my favorite mobile game - Sky children of light 
 
-To download 
+## How to download 
 
 `git clone https://github.com/mitradranirban/mypysky`
  
 or download  the zip file and unzip it 
 
-To play  
+## How to play  
 
 install python 3 . For details  go to <https://python.org>
 
@@ -18,7 +18,7 @@ install pygame module
 
 `pip install pygame`
 
-issue the following command from the src directory in command line 
+issue the following command in command line 
 
 `python3 MyPySky.py`or open the file with python
 
@@ -30,9 +30,13 @@ Press 'd' or Right Arrow to go right
 
 Press 'w' or Up arrow to jump
 
-Collect candle and stars to increase scores 
+Collect candles to increase scores 
 
-Contact with crab and krill will decrease your health - try to avoid them 
+Collect stars to increase health
+
+Contact with crab, krill and stone will decrease your health - try to avoid them 
+
+Press 'q' to quit
 
 The python script is written with help from multiple sources
 
