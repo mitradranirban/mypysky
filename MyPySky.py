@@ -995,8 +995,8 @@ class Level_08(Level):
                   [ STONE, 700, 200],
                   [ STONE, 1200, 250],
                   [ STONE, 2600, 100],
-                  [ STONE, 2800,100],
-                  [ STONE, 3000, 100]
+                  [ STONE, 2800,200],
+                  [ STONE, 3000, 300]
                   ]
 
 
