@@ -48,10 +48,6 @@ font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","an
 font_size = TILEY
 myfont = pygame.freetype.Font(font_path, font_size)
 
-def stats(score,health):
-    """display score and health on the screen"""
-    myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
-    myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
 
 # sounds used for effect
 s = 'sounds'
@@ -221,7 +217,7 @@ class Player(pygame.sprite.Sprite):
 
         # If it is ok to jump, set our speed upwards
         if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
-            self.change_y = -10
+            self.change_y = -7
 
     # Player-controlled movement:
     def go_left(self):
@@ -531,12 +527,11 @@ class Level_02(Level):
         level = [ [  SAND, 500, 550 ],
                   [  SAND, 600, 450],
                   [  SAND, 700, 350],
-                  [  SAND, 900, 450],
+                  [  SAND, 900, 350],
                   [  STONE, 1100, 300],
-                  [  STONE, 1300, 480],
-                  [  STONE, 2000, 280],
                   [  GRASS, 2200, 400],
-                  [  GRASS, 2600, 400]]
+                  [  GRASS, 2400, 450]
+                  ]
 
         # Go through the array above and add platforms
         for platform in level:
@@ -548,10 +543,10 @@ class Level_02(Level):
 
         # Add a custom moving platform
         block =   MovingPlatform(1350,280, TILEX, TILEY,  CLOUD)
-        block.rect.x = 1350
+        block.rect.x = 2150
         block.rect.y = 280
-        block.boundary_left = 1350
-        block.boundary_right = 1950
+        block.boundary_left = 1150
+        block.boundary_right = 2150
         block.change_x = 1
         block.player = self.player
         block.level = self
@@ -559,7 +554,7 @@ class Level_02(Level):
 
         # Add candles
         level = [ [  CANDLE, 1700, 100],
-                  [  CANDLE, 2700, 300]
+                  [  CANDLE, 2400, 300]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -570,7 +565,7 @@ class Level_02(Level):
 
         # Add star
         level = [ [  STAR, 700, 300],
-                  [  STAR, 1700, 300]
+                  [  STAR, 2200, 300]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -589,19 +584,19 @@ class Level_03(Level):
         Level.__init__(self, player)
         self.background = pygame.image.load(os.path.join('images',"prairie.png")).convert()
         self.background.set_colorkey( WHITE)
-        self.level_limit = -1500
+        self.level_limit = -2500
 
          # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 500, 550, ],
-                  [  STONE, 800, 550],
-                  [  STONE, 1000, 450],
-                  [  GRASS, 1200, 400],
-                  [  GRASS, 1600, 400],
-                  [  GRASS, 1900, 300],
-                  [  GRASS, 2400, 500],
+        level = [ [  STONE, 500, 500, ],
+                  [  STONE, 700, 450],
+                  [  STONE, 900, 450],
+                  [  GRASS, 1100, 400],
+                  [  GRASS, 1300, 350],
+                  [  GRASS, 1500, 300],
+                  [  GRASS, 2500, 300],
                   [  GRASS, 2700, 350],
                   [  STONE, 3000, 280],
-                  [  STONE, 3100, 400],
+                  [  STONE, 3200, 400],
                   [  STONE, 3400, 500],
                   ]
 
@@ -614,10 +609,10 @@ class Level_03(Level):
             self.platform_list.add(block)
 
           # Add a custom moving platform
-        block =   MovingPlatform(1350,280, TILEX, TILEY,  MANTA)
+        block =   MovingPlatform(1950,280, TILEX, TILEY,  MANTA)
         block.rect.x = 1950
         block.rect.y = 280
-        block.boundary_left = 1950
+        block.boundary_left = 1650
         block.boundary_right = 2400
         block.change_x = 1
         block.player = self.player
@@ -625,19 +620,19 @@ class Level_03(Level):
         self.platform_list.add(block)
 
         # Add enemy
-        enemy = Enemy(600,500,"crab.png")
+        enemy = Enemy(600,400,"crab.png")
         enemy.rect.x = 600
-        enemy.rect.y = 500
-        enemy.boundary_left = random.randint(500,600)
-        enemy.boundary_right = random.randint(600,700)
-        enemy.change_x = random.randint(1,5)
+        enemy.rect.y = 400
+        enemy.boundary_left = 500
+        enemy.boundary_right = 700
+        enemy.change_x = random.randint(3,5)
         enemy.player = self.player
         enemy.level = self
         self.enemy_list.add(enemy)
    # Add candles
         level = [ 
                 [ CANDLE, 1200, 300],
-                [ CANDLE, 1200, 400],
+                [ CANDLE, 2200, 200],
                 [ CANDLE, 2700, 300]
                  ]
         for platform in level:
@@ -648,8 +643,8 @@ class Level_03(Level):
             self.loot_list.add(block)
 
         # Add star
-        level = [ [  STAR, 700, 400],
-                  [  STAR, 1700, 300]
+        level = [ [  STAR, 500, 400],
+                  [  STAR, 3200, 350]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -669,21 +664,21 @@ class Level_04(Level):
 
         self.background = pygame.image.load(os.path.join('images',"forest.png")).convert()
         self.background.set_colorkey(WHITE)
-        self.level_limit = -2000
+        self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 500, 550, ],
-                  [  STONE, 600, 550],
-                  [  STONE, 700, 550],
-                  [  GRASS, 800, 400],
-                  [  GRASS, 900, 400],
-                  [  GRASS, 1000, 400],
-                  [  GRASS, 1000, 500],
-                  [  GRASS, 1100, 200],
-                  [  GRASS, 1200, 300],
+        level = [ [  STONE, 500, 500, ],
+                  [  STONE, 700, 400],
+                  [  GRASS, 900, 350],
+                  [  GRASS, 1100, 300],
+                  [  GRASS, 1300, 400],
                   [  STONE, 1600, 100],
                   [  STONE, 1700, 200],
-                  [  STONE, 1800, 400],
+                  [  STONE, 1800, 500],
+                  [ GRASS, 2000,450],
+                  [ GRASS, 2200,450],
+                  [ GRASS, 2400,450],
+                  [ GRASS, 2600,450],
                   ]
 
 
@@ -708,9 +703,9 @@ class Level_04(Level):
 
         # Add enemies
         enemy = Enemy(1300,500,"rain.png")
-        enemy.rect.x = 1300
+        enemy.rect.x = 800
         enemy.rect.y = 500
-        enemy.boundary_top = 100
+        enemy.boundary_top = 300
         enemy.boundary_bottom = 550
         enemy.change_y = random.randint(1,5)
         enemy.player = self.player
@@ -726,6 +721,29 @@ class Level_04(Level):
         enemy.player = self.player
         enemy.level = self
         self.enemy_list.add(enemy)
+  # Add candles
+        level = [ 
+                [ CANDLE, 800, 300],
+                [ CANDLE, 1200, 300],
+                [ CANDLE, 2000, 400]
+                 ]
+        for platform in level:
+            block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.loot_list.add(block)
+
+        # Add star
+        level = [ [  STAR, 1900, 450],
+                  [  STAR, 1600, 50]
+                 ]
+        for platform in level:
+            block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.star_list.add(block)      
 # Create platforms for the level 5
 class Level_05(Level):
 
@@ -745,7 +763,13 @@ class Level_05(Level):
                   [  ICE, 1300, 280],
                   [  STONE, 1650, 280],
                   [  STONE, 1750, 400],
-                  [  STONE, 1850, 400]]
+                  [  STONE, 1850, 400],
+                  [ SAND, 2000,450],
+                  [ GRASS, 2200,400],
+                  [ STONE, 2400,350],
+                  [ STONE, 2600,350],
+                  [ STONE, 2900,350],
+                  ]
  
 
         # Go through the array above and add platforms
@@ -758,8 +782,8 @@ class Level_05(Level):
 
  # Add candles
         level = [ 
-                [ CANDLE, 1200, 300],
-                [ CANDLE, 1200, 400],
+                [ CANDLE, 1100, 200],
+                [ CANDLE, 1900, 300],
                 [ CANDLE, 2700, 300]
                  ]
         for platform in level:
@@ -796,18 +820,20 @@ class Level_06(Level):
 
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 500, 550, ],
-                  [  STONE, 700, 550],
-                  [  STONE, 900, 550],
+        level = [ [  STONE, 500, 550],
+                  [  STONE, 900, 500],
                   [  GRASS, 1100, 400],
                   [  GRASS, 1400, 400],
                   [  GRASS, 1600, 400],
-                  [  GRASS, 1800, 500],
-                  [  GRASS, 2100, 200],
+                  [  GRASS, 1900, 300],
+                  [  GRASS, 2200, 200],
                   [  GRASS, 2400, 300],
                   [  STONE, 2600, 100],
+                  [  STONE, 2600, 500],
                   [  STONE, 2800, 200],
                   [  STONE, 3000, 400],
+                  [  STONE, 3300, 400],
+                  [  STONE, 3600, 400],
                   ]
 
 
@@ -836,7 +862,7 @@ class Level_06(Level):
         enemy.rect.y = 300
         enemy.boundary_top = 100
         enemy.boundary_bottom = 550
-        enemy.boundary_left = 2500
+        enemy.boundary_left = 2000
         enemy.boundary_right = 2900
         enemy.change_x = random.randint(3,5)
         enemy.change_y = random.randint(3,5)
@@ -856,7 +882,7 @@ class Level_06(Level):
 
         # Add candles
         level = [ 
-                [ CANDLE, 1200, 300],
+                [ CANDLE, 1500, 300],
                 [ CANDLE, 1600, 400],
                 [ CANDLE, 2200, 350],
                 [ CANDLE, 2700, 300],
@@ -869,7 +895,7 @@ class Level_06(Level):
             self.loot_list.add(block)
 
         # Add star
-        level = [ [ STAR, 700, 200],
+        level = [ [ STAR, 700, 100],
                   [ STAR, 1300, 450],
                   [ STAR, 2600, 200],
                  ]
@@ -1130,7 +1156,11 @@ def main():
             diff = 10 - player.rect.x
             player.rect.x = 10
             current_level.shift_world(diff)
-                    
+        def stats(score,health):
+            """display score and health on the screen"""
+            myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
+            myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
+            
 
         # if player health less than zero go back to home
 
