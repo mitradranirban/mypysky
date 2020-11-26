@@ -400,7 +400,7 @@ class loot(Platform):
     player = None
 
 class star(Platform):
-	
+
     """ A special platform player wil collect to increase health. """
     level = None
     player = None
@@ -636,7 +636,7 @@ class Level_03(Level):
         enemy.level = self
         self.enemy_list.add(enemy)
    # Add candles
-        level = [ 
+        level = [
                 [ CANDLE, 1200, 300],
                 [ CANDLE, 2200, 200],
                 [ CANDLE, 2700, 300]
@@ -749,7 +749,7 @@ class Level_04(Level):
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player
-            self.star_list.add(block)      
+            self.star_list.add(block)
 # Create platforms for the level 5
 class Level_05(Level):
 
