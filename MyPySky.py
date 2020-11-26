@@ -42,6 +42,7 @@ STAR = 'star.png'
 KRILL = 'krill.png'
 ROCK = 'rock.png'
 ARC = 'arc.png'
+STATUE = 'boy.png'
 
 # create the pygame font object
 font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
@@ -822,20 +823,18 @@ class Level_06(Level):
         # Array with type of platform, and x, y location of the platform.
         level = [ [  STONE, 500, 550],
                   [  STONE, 900, 500],
-                  [  GRASS, 1100, 400],
-                  [  GRASS, 1400, 400],
-                  [  GRASS, 1600, 400],
-                  [  GRASS, 1900, 300],
-                  [  GRASS, 2200, 200],
-                  [  GRASS, 2400, 300],
+                  [  GRASS, 1100, 450],
+                  [  GRASS, 1400, 450],
+                  [  GRASS, 1600, 450],
+                  [  GRASS, 1900, 400],
+                  [  GRASS, 2200, 300],
+                  [  GRASS, 2400, 200],
                   [  STONE, 2600, 100],
-                  [  STONE, 2600, 500],
-                  [  STONE, 2800, 200],
+                  [  STONE, 2800, 500],
                   [  STONE, 3000, 400],
-                  [  STONE, 3300, 400],
-                  [  STONE, 3600, 400],
+                  [  STONE, 3300, 350],
+                  [  STONE, 3600, 300],
                   ]
-
 
         # Go through the array above and add platforms
         for platform in level:
@@ -883,9 +882,9 @@ class Level_06(Level):
         # Add candles
         level = [ 
                 [ CANDLE, 1500, 300],
-                [ CANDLE, 1600, 400],
+                [ CANDLE, 3000, 300],
                 [ CANDLE, 2200, 350],
-                [ CANDLE, 2700, 300],
+                [ CANDLE, 3700, 350],
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -897,7 +896,7 @@ class Level_06(Level):
         # Add star
         level = [ [ STAR, 700, 100],
                   [ STAR, 1300, 450],
-                  [ STAR, 2600, 200],
+                  [ STAR, 2600, 50],
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -919,14 +918,14 @@ class Level_07(Level):
         self.background.set_colorkey( WHITE)
         self.level_limit = -2500
  # Array with type of platform, and x, y location of the platform.
-        level = [ [  STONE, 600, 550],
-                  [  STONE, 800, 300],
-                  [  STONE, 1100, 350],
+        level = [ [  STONE, 600, 450],
+                  [  STONE, 1800, 300],
+                  [  STONE, 1500, 350],
                   [ STONE, 1900, 400],
-                  [  STONE, 700, 200],
-                  [  STONE, 1200, 250],
-                  [  STONE, 2200, 300],
-                  [  STONE, 1100, 100],
+                  [  STONE, 1700, 200],
+                  [  STONE, 1400, 250],
+                  [  STONE, 1200, 300],
+                  [  STONE, 1900, 100],
                   [  STONE, 2300, 200],
                   [  STONE, 2600, 100],
                   [ STONE, 2800,100],
@@ -943,7 +942,7 @@ class Level_07(Level):
             self.platform_list.add(block)
 
         # Add a custom moving platform
-        block =   MovingPlatform(1000,300,TILEX,TILEY, STONE)
+        block =   MovingPlatform(1600,300,TILEX,TILEY, STONE)
         block.rect.x = 1600
         block.rect.y = 300
         block.boundary_top = 100
@@ -955,9 +954,9 @@ class Level_07(Level):
         
         # Add candles
         level = [ 
-                [ CANDLE, 400, 300],
-                [ CANDLE, 2200, 400],
-                [ CANDLE, 2700, 300]
+                [ CANDLE, 600, 350],
+                [ CANDLE, 1200, 200],
+                [ CANDLE, 2700, 20]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -967,7 +966,7 @@ class Level_07(Level):
             self.loot_list.add(block)
 
         # Add star
-        level = [ [  STAR, 700, 300],
+        level = [ [  STAR, 1900, 50],
                   [  STAR, 3200, 100]
                  ]
         for platform in level:
@@ -988,15 +987,17 @@ class Level_08(Level):
 
         self.background = pygame.image.load(os.path.join('images',"eden.png")).convert()
         self.level_limit = -2500
-        level = [ [ STONE, 600, 550],
-                  [ STONE, 800, 300],
-                  [ STONE, 1100, 350],
-                  [ STONE, 1900, 400],
-                  [ STONE, 700, 200],
-                  [ STONE, 1200, 250],
-                  [ STONE, 2600, 100],
-                  [ STONE, 2800,200],
-                  [ STONE, 3000, 300]
+        level = [ [ STONE, 600, 450],
+                  [ STONE, 800, 350],
+                  [ STONE, 1000, 300],
+                  [ STONE, 1200, 330],
+                  [ ICE, 1200, 550],
+                  [ ICE, 1200, 400],
+                  [ STONE, 1500, 250],
+                  [ STONE, 1800, 200],
+                  [ STONE, 2000, 300],
+                  [ STONE, 2300, 400],
+                  [ STONE, 2600, 550]
                   ]
 
 
@@ -1009,6 +1010,16 @@ class Level_08(Level):
             self.platform_list.add(block)
 
        # Add enemies
+        enemy = Enemy(700,300,"rock.png")
+        enemy.rect.x = 700
+        enemy.rect.y = 300
+        enemy.boundary_top = 100
+        enemy.boundary_bottom = 550
+        enemy.change_y = 5
+        enemy.player = self.player
+        enemy.level = self
+        self.enemy_list.add(enemy)
+
         enemy = Enemy(1200,300,"krill.png")
         enemy.rect.x = 1200
         enemy.rect.y = 300
@@ -1036,10 +1047,11 @@ class Level_08(Level):
         self.enemy_list.add(enemy)
  # Add candles
         level = [ 
-                [ CANDLE, 1200, 300],
-                [ CANDLE, 1600, 400],
-                [ CANDLE, 2700, 300]
+                [ STATUE, 2600, 500],
+                [ STATUE, 2900, 500],
+                [ STATUE, 3200, 500]
                  ]
+
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
             block.rect.x = platform[1]
@@ -1048,9 +1060,9 @@ class Level_08(Level):
             self.loot_list.add(block)
 
         # Add star
-        level = [ [  STAR, 700, 300],
-                  [  STAR, 1700, 300],
-                  [ STAR, 1750,350],
+        level = [ [ STAR, 1100, 200],
+                  [ STAR, 1900, 200],
+                  [ STAR, 1950,150],
 
                  ]
         for platform in level:
@@ -1059,7 +1071,7 @@ class Level_08(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.star_list.add(block)
-# Create platforms for the level 4
+# Create platforms for the level 9
 class Level_09(Level):
 
     """ Definition for level 9. """
@@ -1072,6 +1084,18 @@ class Level_09(Level):
         self.background = pygame.image.load(os.path.join('images',"orbit.png")).convert()
         self.level_limit = -2500
         
+        # Add candles
+        level = [ 
+                [ CANDLE, 400, 500],
+                [ CANDLE, 800, 400],
+                [ CANDLE, 1100, 300]
+                 ]
+        for platform in level:
+            block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.loot_list.add(block)
 
 def main():
     """ Main Program """
@@ -1080,9 +1104,10 @@ def main():
     # Set the height and width of the screen
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
-
+    icon = pygame.image.load(os.path.join('images', CANDLE))
 
     pygame.display.set_caption("MyPySky python based sky fan art game")
+    pygame.display.set_icon(icon)
 
     # Create the player
     player = Player()
@@ -1101,7 +1126,7 @@ def main():
 
 
     # Set the current level
-    current_level_no = 0
+    current_level_no = 7
     current_level = level_list[current_level_no]
 
     active_sprite_list = pygame.sprite.Group()
@@ -1156,6 +1181,7 @@ def main():
             diff = 10 - player.rect.x
             player.rect.x = 10
             current_level.shift_world(diff)
+    
         def stats(score,health):
             """display score and health on the screen"""
             myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
