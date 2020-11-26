@@ -6,6 +6,11 @@ created by mitradranirban
 Pygame based platform scroller with sky fan art
 
 distributed under GNU All-Permissive licence
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
 """
 
 import pygame
@@ -1087,8 +1092,8 @@ class Level_09(Level):
         # Add candles
         level = [ 
                 [ CANDLE, 400, 500],
-                [ CANDLE, 800, 400],
-                [ CANDLE, 1100, 300]
+                [ CANDLE, 1000, 400],
+                [ CANDLE, 2100, 400]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -1126,7 +1131,7 @@ def main():
 
 
     # Set the current level
-    current_level_no = 7
+    current_level_no = 0
     current_level = level_list[current_level_no]
 
     active_sprite_list = pygame.sprite.Group()
