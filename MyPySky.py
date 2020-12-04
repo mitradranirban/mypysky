@@ -54,7 +54,6 @@ font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","an
 font_size = TILEY
 myfont = pygame.freetype.Font(font_path, font_size)
 
-
 # sounds used for effect
 s = 'sounds'
 tada = pygame.mixer.Sound(os.path.join(s, 'tada.OGG'))
@@ -1168,7 +1167,7 @@ def main():
                     player.stop()
                 if event.key == K_d or event.key == K_RIGHT and player.change_x > 0:
                     player.stop()
-
+            
         # Update the player.
         active_sprite_list.update()
 
@@ -1186,12 +1185,30 @@ def main():
             diff = 10 - player.rect.x
             player.rect.x = 10
             current_level.shift_world(diff)
-    
+        # create the gui button function
+        def button(msg,x,y,w,h,inactive,active,action=None):
+            mouse = pygame.mouse.get_pos()
+            click = pygame.mouse.get_pressed()
+            print(click)
+            if x+w > mouse[0] > x and y+h > mouse[1] > y:
+                pygame.draw.rect(screen, active,(x,y,w,h))
+
+                if click[0] == 1 and action != None:
+                    action()         
+            else:
+                pygame.draw.rect(screen, inactive,(x,y,w,h))
+
+            myfont.render_to(screen, (x+w/2,y), msg, BLACK, None, size = TILEY)
         def stats(score,health):
-            """display score and health on the screen"""
+            """display score and health and buttons on the screen"""
             myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
             myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
+            button("<",100,450,50,50,BLUE,WHITE,player.go_left)
+            button(">",850,450,50,50,BLUE,WHITE,player.go_right)
+            button("^",200,450,50,50,BLUE,WHITE,player.jump)
+            button("||",750,450,50,50,BLUE, WHITE, player.stop )
             
+
 
         # if player health less than zero go back to home
 
