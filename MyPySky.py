@@ -27,6 +27,8 @@ pygame.mixer.init()
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
 BLUE     = (   0,   0, 255)
+GRAY = (230, 230, 230, 50)
+GREY = (127, 127, 127, 50)
 
 # Screen and tiles dimensions
 SCREEN_WIDTH  = 1054
@@ -1185,8 +1187,9 @@ def main():
             diff = 10 - player.rect.x
             player.rect.x = 10
             current_level.shift_world(diff)
-        # create the gui button function
+
         def button(msg,x,y,w,h,inactive,active,action=None):
+            """create the gui button function"""
             mouse = pygame.mouse.get_pos()
             click = pygame.mouse.get_pressed()
             print(click)
@@ -1198,19 +1201,27 @@ def main():
             else:
                 pygame.draw.rect(screen, inactive,(x,y,w,h))
 
-            myfont.render_to(screen, (x+w/2,y), msg, BLACK, None, size = TILEY)
+            myfont.render_to(screen, (x+w//2,y), msg, BLACK, None, size = TILEY)
         def stats(score,health):
             """display score and health and buttons on the screen"""
-            myfont.render_to(screen,  (4,4), "Score-"+str(score), WHITE, None, size  = TILEY)
-            myfont.render_to(screen, (800,4),"Health-"+str(health), WHITE, None, size = TILEY)
-            button("<",100,450,50,50,BLUE,WHITE,player.go_left)
-            button(">",850,450,50,50,BLUE,WHITE,player.go_right)
-            button("^",200,450,50,50,BLUE,WHITE,player.jump)
-            button("||",750,450,50,50,BLUE, WHITE, player.stop )
-            
+            hp = hex(health)
+            if health <= 0:
+                HI = pygame.image.load(os.path.join('images', 'hi0x0.png'))
+            else:
+                HI = pygame.image.load(os.path.join('images', 'hi'+str(hp)+'.png'))
+                screen.blit(HI, (500,4))
+            CANDY = pygame.image.load(os.path.join('images', 'candy.png'))
+            screen.blit(CANDY,(4, 4,))
+            myfont.render_to(screen,  (54,4), str(score), WHITE, None, size  = TILEY)
+            myfont.render_to(screen, (600,4),str(health), WHITE, None, size = TILEY)
+            button("<",100,450,50,50, GRAY, GREY,player.go_left)
+            button(">",850,450,50,50,GRAY,GREY,player.go_right)
+            button("^",125,400,50,50,GRAY,GREY,player.jump)
+            button("^",825,400,50,50,GRAY,GREY,player.jump)
+            button("||",800,450,50,50,GRAY,GREY, player.stop )
+            button("||",150,450,50,50,GRAY,GREY, player.stop )
 
-
-        # if player health less than zero go back to home
+        # if player health less than zero go to end screen
 
         if player.health < 0:
             current_level = level_list[8]
