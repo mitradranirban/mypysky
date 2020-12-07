@@ -27,8 +27,8 @@ pygame.mixer.init()
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
 BLUE     = (   0,   0, 255)
-GRAY = (230, 230, 230, 50)
-GREY = (127, 127, 127, 50)
+GRAY     = ( 230, 230, 230)
+GREY     = ( 127, 127, 127)
 
 # Screen and tiles dimensions
 SCREEN_WIDTH  = 1054
@@ -506,7 +506,7 @@ class Level_01(Level):
             block.rect.y = platform[2]
             block.player = self.player
             self.platform_list.add(block)
-        
+
         # Add loot
         level = [ [  CANDLE, 100, 400],
                   [  CANDLE, 1700, 500]
@@ -729,7 +729,7 @@ class Level_04(Level):
         enemy.level = self
         self.enemy_list.add(enemy)
   # Add candles
-        level = [ 
+        level = [
                 [ CANDLE, 800, 300],
                 [ CANDLE, 1200, 300],
                 [ CANDLE, 2000, 400]
@@ -1110,8 +1110,11 @@ def main():
     # Set the height and width of the screen
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
-    icon = pygame.image.load(os.path.join('images', CANDLE))
+    gui = pygame.Surface(size, SRCALPHA)
+    gui.fill((255,255,255,228))
+    screen.blit(gui,(0,0))
 
+    icon = pygame.image.load(os.path.join('images', CANDLE))
     pygame.display.set_caption("MyPySky python based sky fan art game")
     pygame.display.set_icon(icon)
 
@@ -1194,14 +1197,14 @@ def main():
             click = pygame.mouse.get_pressed()
             print(click)
             if x+w > mouse[0] > x and y+h > mouse[1] > y:
-                pygame.draw.rect(screen, active,(x,y,w,h))
+                pygame.draw.rect(gui, active,(x,y,w,h))
 
                 if click[0] == 1 and action != None:
-                    action()         
+                    action()        
             else:
-                pygame.draw.rect(screen, inactive,(x,y,w,h))
+                pygame.draw.rect(gui, inactive,(x,y,w,h))
 
-            myfont.render_to(screen, (x+w//2,y), msg, BLACK, None, size = TILEY)
+            myfont.render_to(screen, (x+w//2,y), msg, WHITE, None, size = TILEY)
         def stats(score,health):
             """display score and health and buttons on the screen"""
             hp = hex(health)
@@ -1215,10 +1218,10 @@ def main():
             myfont.render_to(screen,  (54,4), str(score), WHITE, None, size  = TILEY)
             myfont.render_to(screen, (600,4),str(health), WHITE, None, size = TILEY)
             button("<",100,450,50,50, GRAY, GREY,player.go_left)
-            button(">",850,450,50,50,GRAY,GREY,player.go_right)
+            button(">",950,450,50,50,GRAY,GREY,player.go_right)
             button("^",125,400,50,50,GRAY,GREY,player.jump)
-            button("^",825,400,50,50,GRAY,GREY,player.jump)
-            button("||",800,450,50,50,GRAY,GREY, player.stop )
+            button("^",925,400,50,50,GRAY,GREY,player.jump)
+            button("||",900,450,50,50,GRAY,GREY, player.stop )
             button("||",150,450,50,50,GRAY,GREY, player.stop )
 
         # if player health less than zero go to end screen
