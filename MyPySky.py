@@ -50,6 +50,7 @@ KRILL = 'krill.png'
 ROCK = 'rock.png'
 ARC = 'arc.png'
 STATUE = 'boy.png'
+PLANT = 'plant.png'
 
 # create the pygame font object
 font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
@@ -639,7 +640,7 @@ class Level_03(Level):
    # Add candles
         level = [
                 [ CANDLE, 1200, 300],
-                [ CANDLE, 2200, 200],
+                [ PLANT, 2200, 200],
                 [ CANDLE, 2700, 300]
                  ]
         for platform in level:
@@ -730,9 +731,9 @@ class Level_04(Level):
         self.enemy_list.add(enemy)
   # Add candles
         level = [
-                [ CANDLE, 800, 300],
+                [ PLANT, 800, 300],
                 [ CANDLE, 1200, 300],
-                [ CANDLE, 2000, 400]
+                [ PLANT, 2000, 400]
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])
@@ -888,9 +889,9 @@ class Level_06(Level):
         # Add candles
         level = [ 
                 [ CANDLE, 1500, 300],
-                [ CANDLE, 3000, 300],
-                [ CANDLE, 2200, 350],
-                [ CANDLE, 3700, 350],
+                [ PLANT, 3000, 300],
+                [ PLANT, 2200, 350],
+                [ PLANT, 3700, 350],
                  ]
         for platform in level:
             block =   Platform(platform[1],platform[2], TILEX, TILEY,platform[0])

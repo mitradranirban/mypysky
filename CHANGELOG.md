@@ -1,5 +1,13 @@
 # CHANGELOG FOR MYPYSKY
 
+## Version 0.0.5 [16th Decenber 2020]
+
+* Visual representation of score and health
+
+* Added touchscreen support with Left("<"), Right (">"), Pause ("||") and Jump ("^") buttons 
+
+* Replaced some candles with dark plants.  
+
 ## Version 0.0.4 [26th November 2020] 
 
 * Made available through website https://game.atipra.in/mypysky 
