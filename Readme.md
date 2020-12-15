@@ -6,9 +6,7 @@
 
 ## How to download 
 
-`git clone https://github.com/mitradranirban/mypysky`
- 
-or download  the zip file and unzip it 
+Go to https://game.atipra.in/mypysky/download.html to get link to latest versions. 
 
 ## How to play  
 
@@ -24,11 +22,15 @@ issue the following command in command line
 
 ## Player control 
 
-Press 'a' or Left arrow to go left 
+Press 'a' or Left arrow or touch '<' to go left 
 
-Press 'd' or Right Arrow to go right
+Press 'd' or Right Arrow or touch '>' to go right
 
-Press 'w' or Up arrow to jump
+Press 'w' or Up arrow or touch "^" to jump
+
+Press 'q' to quit
+
+## Scoring 
 
 Collect candles to increase scores 
 
@@ -36,7 +38,7 @@ Collect stars to increase health
 
 Contact with crab, krill and stone will decrease your health - try to avoid them 
 
-Press 'q' to quit
+
 
 The python script is written with help from multiple sources
 
