@@ -1,0 +1,1 @@
+If you Licence your code under GNU All permissive Licence or your art work under Creative Commons ShareAlike Licence they can be included in future version of the game. Please make a new pull request in our github repository for the same
