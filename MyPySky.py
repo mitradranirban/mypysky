@@ -1,9 +1,9 @@
 """
-MyPySky
+MyPySky-web
 
 created by mitradranirban
 
-Pygame based platform scroller with sky fan art
+Pygame based platform scroller with sky fan art - web version 
 
 distributed under GNU All-Permissive licence
 
@@ -12,9 +12,8 @@ are permitted in any medium without royalty provided the copyright
 notice and this notice are preserved.  This file is offered as-is,
 without any warranty.
 """
-
-import pygame
-import pygame.freetype
+import asyncio
+import pygame 
 from pygame.locals import *
 import os
 import random
@@ -22,6 +21,7 @@ import random
 # Initiate pygame modules
 pygame.init()
 pygame.mixer.init()
+pygame.font.init()
 
 # Colors
 BLACK    = (   0,   0,   0)
@@ -55,7 +55,7 @@ PLANT = 'plant.png'
 # create the pygame font object
 font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),"fonts","ani.ttf")
 font_size = TILEY
-myfont = pygame.freetype.Font(font_path, font_size)
+myfont = pygame.font.Font(font_path, font_size)
 
 # sounds used for effect
 s = 'sounds'
@@ -1104,7 +1104,7 @@ class Level_09(Level):
             block.player = self.player
             self.loot_list.add(block)
 
-def main():
+async def main():
     """ Main Program """
     
 
@@ -1205,7 +1205,9 @@ def main():
             else:
                 pygame.draw.rect(gui, inactive,(x,y,w,h))
 
-            myfont.render_to(screen, (x+w//2,y), msg, WHITE, None, size = TILEY)
+            buttontext = myfont.render(msg, True, WHITE, None)
+            screen.blit(buttontext, (x,y))
+            
         def stats(score,health):
             """display score and health and buttons on the screen"""
             hp = hex(health)
@@ -1214,10 +1216,15 @@ def main():
             else:
                 HI = pygame.image.load(os.path.join('images', 'hi'+str(hp)+'.png'))
                 screen.blit(HI, (500,4))
+              
             CANDY = pygame.image.load(os.path.join('images', 'candy.png'))
             screen.blit(CANDY,(4, 4,))
-            myfont.render_to(screen,  (54,4), str(score), WHITE, None, size  = TILEY)
-            myfont.render_to(screen, (600,4),str(health), WHITE, None, size = TILEY)
+            score_value = myfont.render(str(score), True, WHITE, None )
+            screen.blit(score_value,(60,4))
+            health_value = myfont.render(str(health), True, WHITE, None )
+            screen.blit(health_value,(600,4))
+              
+            """ Display gui buttons for touchscreen """
             button("<",100,450,50,50, GRAY, GREY,player.go_left)
             button(">",950,450,50,50,GRAY,GREY,player.go_right)
             button("^",125,400,50,50,GRAY,GREY,player.jump)
@@ -1253,10 +1260,11 @@ def main():
 
         # Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
+        await asyncio.sleep(0)
 
     # Be IDLE friendly. If you forget this line, the program will 'hang'
     # on exit.
     pygame.quit()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
