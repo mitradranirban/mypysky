@@ -1,0 +1,31 @@
+name: mypysky
+base: core22    
+version: '0.0.6'  
+summary: Python game - playable sky fan art
+description: |
+  Mypysky is a Python-based game inspired by Sky fan art. This Snap packages the game for easy installation.
+
+grade: devel # Can be 'devel' for development releases
+confinement: strict # 'strict' is recommended for better security
+
+parts:
+  mypysky:
+    plugin: python
+    source: .
+    python-packages:
+      - pygame 
+      - asyncio
+      - random
+      - os
+    build-packages:
+      - python3-dev
+      - python3-pip
+
+apps:
+  mypysky:
+    command: bin/snapcraft-preload python3 MyPySky.py
+    plugs:
+      - network
+      - network-bind
+      - opengl
+      - home # Allows access to user files in the home directory
