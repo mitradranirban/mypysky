@@ -15,17 +15,22 @@ parts:
     python-packages:
       - pygame 
       - asyncio
-      - random
-      - os
     build-packages:
       - python3-dev
       - python3-pip
 
 apps:
   mypysky:
-    command: bin/snapcraft-preload python3 MyPySky.py
+    command: bin/mypysky
     plugs:
+      - alsa
+      - pulseaudio
+      - audio-playback
+      - desktop
+      - desktop-legacy
       - network
       - network-bind
       - opengl
+      - x11
+      - wayland
       - home # Allows access to user files in the home directory
